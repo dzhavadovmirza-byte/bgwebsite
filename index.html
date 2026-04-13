@@ -148,70 +148,83 @@ img{max-width:100%;display:block}
   width:360px;height:150px;
   margin-left:-180px;margin-top:-75px;
   transform:translateZ(60px);
-  background:linear-gradient(170deg,#dbb832 0%,#c9a62a 15%,#b89520 35%,#caa82e 55%,#ddb934 75%,#c9a62a 100%);
-  box-shadow:inset 0 1px 0 rgba(255,235,150,.25),inset 0 -1px 0 rgba(100,70,0,.15);
+  background:linear-gradient(170deg,#a8882a 0%,#9a7a1e 10%,#8b6c16 25%,#a07a1c 40%,#c4a035 55%,#a8882a 70%,#917018 85%,#a07a1c 100%);
+  box-shadow:inset 0 1px 0 rgba(210,185,90,.35),inset 0 -2px 0 rgba(60,40,0,.3),inset 2px 0 0 rgba(210,185,90,.08),inset -2px 0 0 rgba(60,40,0,.12);
   display:flex;align-items:center;justify-content:center;flex-direction:column;
 }
-.bar-front::after{content:'';position:absolute;top:8px;left:8px;right:8px;bottom:8px;border:1px solid rgba(180,140,30,.25);pointer-events:none}
-/* Realistic light streak across face */
+.bar-front::after{content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;border:1px solid rgba(140,110,30,.2);pointer-events:none;box-shadow:inset 0 0 0 1px rgba(60,40,0,.06)}
+/* Realistic light streak + subtle brushed metal texture */
 .bar-front::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-  background:linear-gradient(105deg,transparent 30%,rgba(255,245,180,.12) 45%,rgba(255,245,180,.06) 55%,transparent 70%);pointer-events:none}
-.bar-stamp{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:rgba(100,70,10,.5);letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 0 rgba(255,235,150,.15)}
-.bar-weight{font-family:var(--font-body);font-size:.78rem;font-weight:500;color:rgba(100,70,10,.4);letter-spacing:.22em;margin-top:5px}
-.bar-purity{font-family:var(--font-body);font-size:.68rem;font-weight:400;color:rgba(100,70,10,.3);letter-spacing:.15em;margin-top:10px}
+  background:
+    linear-gradient(105deg,transparent 25%,rgba(255,230,140,.08) 40%,rgba(255,240,170,.14) 48%,rgba(255,230,140,.06) 56%,transparent 70%),
+    repeating-linear-gradient(90deg,transparent,transparent 2px,rgba(180,140,40,.02) 2px,rgba(180,140,40,.02) 3px);
+  pointer-events:none}
+.bar-stamp{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:rgba(70,50,5,.55);letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 0 rgba(210,180,80,.18),0 -1px 0 rgba(50,30,0,.1)}
+.bar-weight{font-family:var(--font-body);font-size:.78rem;font-weight:500;color:rgba(70,50,5,.45);letter-spacing:.22em;margin-top:5px;text-shadow:0 1px 0 rgba(210,180,80,.1)}
+.bar-purity{font-family:var(--font-body);font-size:.68rem;font-weight:400;color:rgba(70,50,5,.35);letter-spacing:.15em;margin-top:10px}
 
 /* BACK — 360×150, pushed back */
 .bar-back{
   width:360px;height:150px;
   margin-left:-180px;margin-top:-75px;
   transform:rotateY(180deg) translateZ(60px);
-  background:linear-gradient(170deg,#a08318 0%,#8f7515 50%,#a08318 100%);
+  background:linear-gradient(170deg,#705a10 0%,#604d0e 40%,#544208 70%,#665510 100%);
+  box-shadow:inset 0 0 20px rgba(40,25,0,.3);
 }
 
-/* TOP — 360×120, rotated up */
+/* TOP — 360×120, rotated up — brightest face (catches light) */
 .bar-top{
   width:360px;height:120px;
   margin-left:-180px;margin-top:-60px;
   transform:rotateX(90deg) translateZ(75px);
-  background:linear-gradient(180deg,#e8c840 0%,#dbb832 20%,#caa82e 50%,#dbb832 80%,#e8c840 100%);
-  box-shadow:inset 0 0 30px rgba(255,235,150,.08);
+  background:linear-gradient(180deg,#c8a83a 0%,#ba9a30 15%,#a88a28 35%,#ba9a30 50%,#ccac3e 70%,#c8a83a 85%,#b89228 100%);
+  box-shadow:inset 0 0 40px rgba(180,150,50,.1),inset 0 2px 0 rgba(220,195,100,.2);
 }
-/* Light reflection on top surface */
+/* Light reflection on top surface — key specular highlight */
 .bar-top::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
-  background:linear-gradient(135deg,rgba(255,250,200,.15) 0%,transparent 40%,transparent 60%,rgba(255,250,200,.05) 100%);pointer-events:none}
+  background:
+    linear-gradient(135deg,rgba(255,240,180,.2) 0%,rgba(255,240,180,.08) 20%,transparent 45%,transparent 65%,rgba(255,240,180,.04) 90%,rgba(255,240,180,.1) 100%),
+    repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(200,170,60,.015) 3px,rgba(200,170,60,.015) 4px);
+  pointer-events:none}
 
-/* BOTTOM — 360×120 */
+/* BOTTOM — 360×120 — darkest face (shadow) */
 .bar-bottom{
   width:360px;height:120px;
   margin-left:-180px;margin-top:-60px;
   transform:rotateX(-90deg) translateZ(75px);
-  background:linear-gradient(0deg,#7a6510,#8a7214);
+  background:linear-gradient(0deg,#4a3a08,#5a480c,#4a3a08);
+  box-shadow:inset 0 0 20px rgba(30,20,0,.4);
 }
 
-/* LEFT — 120×150 */
+/* LEFT — 120×150 — darker side face */
 .bar-left{
   width:120px;height:150px;
   margin-left:-60px;margin-top:-75px;
   transform:rotateY(-90deg) translateZ(180px);
-  background:linear-gradient(180deg,#b89520 0%,#a08318 40%,#8f7515 100%);
-  box-shadow:inset 1px 0 0 rgba(255,235,150,.1);
+  background:linear-gradient(180deg,#8a7218 0%,#7a6414 30%,#6a5610 60%,#5e4c0c 100%);
+  box-shadow:inset 1px 0 0 rgba(200,170,60,.12),inset 0 0 15px rgba(40,25,0,.2);
 }
 
-/* RIGHT — 120×150 */
+/* RIGHT — 120×150 — slightly lit side */
 .bar-right{
   width:120px;height:150px;
   margin-left:-60px;margin-top:-75px;
   transform:rotateY(90deg) translateZ(180px);
-  background:linear-gradient(180deg,#caa82e 0%,#b89520 30%,#a08318 70%,#8f7515 100%);
-  box-shadow:inset -1px 0 0 rgba(255,235,150,.08);
+  background:linear-gradient(180deg,#a08820 0%,#907a1a 25%,#806c14 55%,#6a5a10 85%,#5e4e0c 100%);
+  box-shadow:inset -1px 0 0 rgba(200,170,60,.06),inset 0 0 15px rgba(40,25,0,.15);
 }
-/* Light edge on right face */
-.bar-right::before{content:'';position:absolute;top:0;left:0;width:1px;height:100%;background:rgba(255,235,150,.12);pointer-events:none}
+/* Light edge catch on right face */
+.bar-right::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;
+  background:linear-gradient(180deg,rgba(220,190,80,.2),rgba(220,190,80,.06),rgba(220,190,80,.15));pointer-events:none}
 
 /* Reflection under the bar */
 .bar-reflection{position:absolute;bottom:-120px;left:50%;width:300px;height:90px;margin-left:-150px;
-  background:radial-gradient(ellipse,rgba(212,175,55,.12) 0%,rgba(212,175,55,.04) 50%,transparent 80%);
-  filter:blur(8px);pointer-events:none}
+  background:radial-gradient(ellipse,rgba(170,140,40,.15) 0%,rgba(140,110,30,.06) 45%,transparent 80%);
+  filter:blur(10px);pointer-events:none}
+
+/* Beveled edge highlight — top-front edge */
+.bar-top::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,rgba(220,190,90,.1),rgba(255,235,140,.3) 30%,rgba(255,235,140,.35) 50%,rgba(255,235,140,.3) 70%,rgba(220,190,90,.1));pointer-events:none}
 
 .hero-ticker{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:3rem;padding:1rem 2.5rem;background:rgba(10,10,10,.8);backdrop-filter:blur(20px);border:1px solid rgba(212,175,55,.1);z-index:2;animation:fadeSlideUp 1s var(--ease-out-expo) 1.2s both}
 .ticker-item{display:flex;align-items:center;gap:.75rem}
