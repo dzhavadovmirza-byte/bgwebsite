@@ -215,8 +215,12 @@ img{max-width:100%;display:block}
 .hero-ticker{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:3rem;padding:1rem 2.5rem;background:rgba(10,10,10,.8);backdrop-filter:blur(20px);border:1px solid rgba(212,175,55,.1);z-index:2;animation:fadeSlideUp 1s var(--ease-out-expo) 1.2s both}
 .ticker-item{display:flex;align-items:center;gap:.75rem}
 .ticker-label{font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-500)}
-.ticker-value{font-family:var(--font-heading);font-size:1.3rem;font-weight:400;color:var(--gold-300)}
-.ticker-change{font-size:.72rem;font-weight:500;color:#4caf50}
+.ticker-value{font-family:var(--font-heading);font-size:1.3rem;font-weight:400;color:var(--gold-300);transition:color .3s}
+.ticker-value.flash{animation:tickerFlash .6s ease}
+@keyframes tickerFlash{0%{opacity:.5}50%{opacity:1;text-shadow:0 0 8px rgba(212,175,55,.4)}100%{opacity:1;text-shadow:none}}
+.ticker-change{font-size:.72rem;font-weight:500;color:#4caf50;transition:color .3s}
+.ticker-change.down{color:#ef5350}
+.ticker-live-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#4caf50;margin-right:4px;animation:pulse 2s ease-in-out infinite}
 
 @media(max-width:900px){
   .hero-content{grid-template-columns:1fr;text-align:center}
@@ -546,9 +550,9 @@ img{max-width:100%;display:block}
   </div>
 
   <div class="hero-ticker">
-    <div class="ticker-item"><div><div class="ticker-label">Gold XAU/USD</div><div class="ticker-value">$2,338.40</div></div><span class="ticker-change">+0.82%</span></div>
-    <div class="ticker-item"><div><div class="ticker-label">Silver XAG/USD</div><div class="ticker-value">$29.15</div></div><span class="ticker-change">+1.24%</span></div>
-    <div class="ticker-item"><div><div class="ticker-label">Gold AED/g</div><div class="ticker-value">AED 280.50</div></div><span class="ticker-change">+0.67%</span></div>
+    <div class="ticker-item"><div><div class="ticker-label">Gold XAU/USD</div><div class="ticker-value" id="goldPrice">Loading...</div></div><span class="ticker-change" id="goldChange">—</span></div>
+    <div class="ticker-item"><div><div class="ticker-label">Silver XAG/USD</div><div class="ticker-value" id="silverPrice">Loading...</div></div><span class="ticker-change" id="silverChange">—</span></div>
+    <div class="ticker-item"><div><div class="ticker-label">Gold AED/g</div><div class="ticker-value" id="goldAed">Loading...</div></div><span class="ticker-update" id="tickerUpdate" style="font-size:.6rem;color:var(--gray-600);white-space:nowrap">—</span></div>
   </div>
 </section>
 
@@ -925,6 +929,83 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',
 document.querySelector('.hero').addEventListener('mousemove',e=>{const x=(e.clientX/innerWidth-.5)*20,y=(e.clientY/innerHeight-.5)*20;
 document.querySelector('.gold-bar-scene').style.transform=`translate(${x*.3}px,${y*.3}px)`;
 document.querySelector('.hero-radial').style.transform=`translate(calc(-50% + ${x}px),calc(-50% + ${y}px))`});
+
+/* ═══════════════════════════════
+   LIVE METAL PRICES — gold-api.com
+   Updates every 2 minutes
+   ═══════════════════════════════ */
+(function(){
+  const AED_RATE = 3.6725; // USD to AED fixed peg
+  const TROY_OZ_TO_GRAM = 31.1035;
+  let prevGold = null, prevSilver = null;
+
+  function fmt(n, decimals){
+    return n.toLocaleString('en-US',{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
+  }
+
+  function setPrice(elId, value, prefix){
+    const el = document.getElementById(elId);
+    if(!el) return;
+    el.textContent = prefix + value;
+    el.classList.remove('flash');
+    void el.offsetWidth; // force reflow
+    el.classList.add('flash');
+  }
+
+  function setChange(elId, current, previous){
+    const el = document.getElementById(elId);
+    if(!el || !previous) return;
+    const pct = ((current - previous) / previous * 100);
+    const up = pct >= 0;
+    el.textContent = (up ? '+' : '') + pct.toFixed(2) + '%';
+    el.className = 'ticker-change' + (up ? '' : ' down');
+  }
+
+  async function fetchPrice(symbol){
+    try {
+      const r = await fetch('https://api.gold-api.com/price/' + symbol);
+      if(!r.ok) throw new Error(r.status);
+      return await r.json();
+    } catch(e){
+      console.warn('Price fetch failed for ' + symbol, e);
+      return null;
+    }
+  }
+
+  async function updatePrices(){
+    const [gold, silver] = await Promise.all([fetchPrice('XAU'), fetchPrice('XAG')]);
+
+    if(gold && gold.price){
+      const p = gold.price;
+      setPrice('goldPrice', '$' + fmt(p, 2), '');
+      setChange('goldChange', p, prevGold);
+      // Gold AED per gram
+      const aedPerGram = (p * AED_RATE) / TROY_OZ_TO_GRAM;
+      setPrice('goldAed', 'AED ' + fmt(aedPerGram, 2), '');
+      prevGold = p;
+    }
+
+    if(silver && silver.price){
+      const p = silver.price;
+      setPrice('silverPrice', '$' + fmt(p, 2), '');
+      setChange('silverChange', p, prevSilver);
+      prevSilver = p;
+    }
+
+    // Update timestamp
+    const upd = document.getElementById('tickerUpdate');
+    if(upd){
+      const now = new Date();
+      const time = now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+      upd.innerHTML = '<span class="ticker-live-dot"></span>Live ' + time;
+    }
+  }
+
+  // Initial fetch after page loads
+  setTimeout(updatePrices, 2000);
+  // Refresh every 2 minutes
+  setInterval(updatePrices, 120000);
+})();
 </script>
 </body>
 </html>
