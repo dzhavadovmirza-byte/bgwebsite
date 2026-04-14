@@ -182,8 +182,10 @@ img{max-width:100%;display:block}
   transform:translateZ(60px);
   background:linear-gradient(170deg,#a8882a 0%,#9a7a1e 10%,#8b6c16 25%,#a07a1c 40%,#c4a035 55%,#a8882a 70%,#917018 85%,#a07a1c 100%);
   box-shadow:inset 0 1px 0 rgba(210,185,90,.35),inset 0 -2px 0 rgba(60,40,0,.3),inset 2px 0 0 rgba(210,185,90,.08),inset -2px 0 0 rgba(60,40,0,.12);
-  display:flex;align-items:center;justify-content:center;flex-direction:column;
+  display:flex;align-items:center;justify-content:center;
 }
+.bar-front-content{display:flex;align-items:center;justify-content:space-between;width:85%;height:70%;position:relative;z-index:1}
+.bar-front-left{display:flex;flex-direction:column;align-items:flex-start}
 .bar-front::after{content:'';position:absolute;top:10px;left:10px;right:10px;bottom:10px;border:1px solid rgba(140,110,30,.2);pointer-events:none;box-shadow:inset 0 0 0 1px rgba(60,40,0,.06)}
 /* Realistic light streak + subtle brushed metal texture */
 .bar-front::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;
@@ -193,7 +195,10 @@ img{max-width:100%;display:block}
   pointer-events:none}
 .bar-stamp{font-family:var(--font-heading);font-size:1.15rem;font-weight:600;color:rgba(70,50,5,.55);letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 0 rgba(210,180,80,.18),0 -1px 0 rgba(50,30,0,.1)}
 .bar-weight{font-family:var(--font-body);font-size:.78rem;font-weight:500;color:rgba(70,50,5,.45);letter-spacing:.22em;margin-top:5px;text-shadow:0 1px 0 rgba(210,180,80,.1)}
-.bar-purity{font-family:var(--font-body);font-size:.68rem;font-weight:400;color:rgba(70,50,5,.35);letter-spacing:.15em;margin-top:10px}
+.bar-purity{font-family:var(--font-body);font-size:.68rem;font-weight:400;color:rgba(70,50,5,.35);letter-spacing:.15em;margin-top:8px}
+.bar-serial{font-family:var(--font-body);font-size:.52rem;font-weight:400;color:rgba(70,50,5,.25);letter-spacing:.15em;margin-top:12px}
+.bar-seal{width:70px;height:70px;flex-shrink:0;opacity:.7}
+.bar-seal svg{width:100%;height:100%}
 
 /* BACK — 360×150, pushed back */
 .bar-back{
@@ -344,8 +349,8 @@ img{max-width:100%;display:block}
 .product-front::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 30%,rgba(212,175,55,.04),transparent 60%);pointer-events:none}
 .product-card:hover .product-front{border-color:rgba(212,175,55,.2)}
 .product-icon{width:100%;flex:1;display:flex;align-items:center;justify-content:center;position:relative}
-.product-icon svg{width:130px;height:130px;opacity:.9;filter:drop-shadow(0 10px 30px rgba(212,175,55,.15))}
-.product-icon-glow{position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.1),transparent 70%)}
+.product-icon svg{width:200px;height:160px;opacity:.95;filter:drop-shadow(0 15px 35px rgba(0,0,0,.4))}
+.product-icon-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(212,175,55,.08),transparent 70%)}
 .product-front h3{font-family:var(--font-heading);font-size:1.8rem;font-weight:400;color:var(--gray-100);margin-bottom:.5rem}
 .product-front p{font-size:.88rem;color:var(--gray-500)}
 .product-front .product-tag{position:absolute;top:1.5rem;right:1.5rem;padding:.3rem .8rem;border:1px solid rgba(212,175,55,.2);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-400)}
@@ -646,9 +651,24 @@ img{max-width:100%;display:block}
         <div class="orbit-ring"></div>
         <div class="gold-bar-3d">
           <div class="bar-face bar-front">
-            <span class="bar-stamp">Budget Gold</span>
-            <span class="bar-weight">999.9 Fine Gold</span>
-            <span class="bar-purity">1 KG &bull; 24 KARAT</span>
+            <div class="bar-front-content">
+              <div class="bar-front-left">
+                <span class="bar-stamp">Budget Gold</span>
+                <span class="bar-weight">999.9 Fine Gold</span>
+                <span class="bar-purity">1KG &ndash; 24 KARAT</span>
+                <span class="bar-serial">EG0012345</span>
+              </div>
+              <div class="bar-seal">
+                <svg viewBox="0 0 70 70" fill="none">
+                  <circle cx="35" cy="35" r="32" stroke="rgba(90,65,10,.4)" stroke-width="1.5"/>
+                  <circle cx="35" cy="35" r="28" stroke="rgba(90,65,10,.3)" stroke-width=".7"/>
+                  <circle cx="35" cy="35" r="24" stroke="rgba(90,65,10,.2)" stroke-width=".5" stroke-dasharray="2 2"/>
+                  <text x="35" y="31" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="14" font-weight="700" fill="rgba(80,58,8,.5)">BG</text>
+                  <text x="35" y="42" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="5.5" font-weight="500" fill="rgba(80,58,8,.4)" letter-spacing=".8">FINE GOLD</text>
+                  <text x="35" y="50" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="4" fill="rgba(80,58,8,.3)" letter-spacing=".5">&#x2726; &#x2726; &#x2726; &#x2726; &#x2726;</text>
+                </svg>
+              </div>
+            </div>
           </div>
           <div class="bar-face bar-back"></div>
           <div class="bar-face bar-top"></div>
@@ -754,7 +774,37 @@ img{max-width:100%;display:block}
           <div class="product-front">
             <span class="product-tag">999.9</span>
             <div class="product-icon"><div class="product-icon-glow"></div>
-              <svg viewBox="0 0 120 120" fill="none"><path d="M25 85L15 55h90l-10 30H25z" fill="url(#gb1)" stroke="#D4AF37" stroke-width="1"/><path d="M15 55l20-20h50l20 20H15z" fill="url(#gb2)" stroke="#D4AF37" stroke-width="1"/><text x="60" y="74" text-anchor="middle" fill="#B8860B" font-size="10" font-family="serif" opacity=".7">999.9</text><defs><linearGradient id="gb1" x1="15" y1="55" x2="105" y2="85"><stop stop-color="#D4AF37"/><stop offset=".5" stop-color="#FFD700"/><stop offset="1" stop-color="#B8860B"/></linearGradient><linearGradient id="gb2" x1="15" y1="35" x2="105" y2="55"><stop stop-color="#F0D058"/><stop offset=".5" stop-color="#FFD700"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs></svg>
+              <svg viewBox="0 0 200 160" fill="none">
+                <!-- Shadow -->
+                <ellipse cx="105" cy="138" rx="70" ry="8" fill="rgba(0,0,0,.35)" filter="blur(4px)"/>
+                <!-- Bottom face -->
+                <path d="M30 105 L55 120 L170 120 L145 105 Z" fill="#5a480c"/>
+                <!-- Front face -->
+                <path d="M30 60 L30 105 L145 105 L145 60 Z" fill="url(#gbar-front)"/>
+                <path d="M30 60 L30 105 L145 105 L145 60 Z" fill="url(#gbar-streak)" opacity=".6"/>
+                <!-- Top face -->
+                <path d="M30 60 L55 42 L170 42 L145 60 Z" fill="url(#gbar-top)"/>
+                <path d="M30 60 L55 42 L170 42 L145 60 Z" fill="url(#gbar-topshine)" opacity=".5"/>
+                <!-- Right face -->
+                <path d="M145 60 L170 42 L170 120 L145 105 Z" fill="url(#gbar-right)"/>
+                <!-- Front border inset -->
+                <path d="M36 66 L36 99 L139 99 L139 66 Z" fill="none" stroke="rgba(140,110,20,.15)" stroke-width=".5"/>
+                <!-- Text on front -->
+                <text x="87" y="79" text-anchor="middle" font-family="serif" font-size="7" font-weight="600" fill="rgba(80,58,8,.5)" letter-spacing="1.5">FINE</text>
+                <text x="87" y="89" text-anchor="middle" font-family="serif" font-size="7" font-weight="600" fill="rgba(80,58,8,.5)" letter-spacing="1.5">GOLD</text>
+                <!-- Top face text -->
+                <text x="100" y="54" text-anchor="middle" font-family="serif" font-size="5" fill="rgba(80,58,8,.35)" letter-spacing="1">999.9</text>
+                <!-- Edge highlights -->
+                <path d="M30 60 L145 60" stroke="rgba(220,190,90,.3)" stroke-width=".5"/>
+                <path d="M145 60 L170 42" stroke="rgba(220,190,90,.15)" stroke-width=".5"/>
+                <defs>
+                  <linearGradient id="gbar-front" x1="30" y1="60" x2="30" y2="105"><stop stop-color="#a8882a"/><stop offset=".3" stop-color="#96781c"/><stop offset=".7" stop-color="#8a6c16"/><stop offset="1" stop-color="#7a5e12"/></linearGradient>
+                  <linearGradient id="gbar-streak" x1="30" y1="80" x2="145" y2="80"><stop stop-color="transparent"/><stop offset=".3" stop-color="rgba(255,230,140,.08)"/><stop offset=".5" stop-color="rgba(255,240,170,.14)"/><stop offset=".7" stop-color="rgba(255,230,140,.06)"/><stop offset="1" stop-color="transparent"/></linearGradient>
+                  <linearGradient id="gbar-top" x1="55" y1="42" x2="55" y2="60"><stop stop-color="#ccac3e"/><stop offset=".5" stop-color="#ba9a30"/><stop offset="1" stop-color="#a88a28"/></linearGradient>
+                  <linearGradient id="gbar-topshine" x1="50" y1="42" x2="160" y2="60"><stop stop-color="rgba(255,240,180,.3)"/><stop offset=".4" stop-color="transparent"/><stop offset="1" stop-color="rgba(255,240,180,.05)"/></linearGradient>
+                  <linearGradient id="gbar-right" x1="145" y1="42" x2="170" y2="120"><stop stop-color="#9a7a1e"/><stop offset=".4" stop-color="#806810"/><stop offset="1" stop-color="#5e4e0c"/></linearGradient>
+                </defs>
+              </svg>
             </div>
             <h3 data-i18n="products.gold">Gold Bars</h3><p data-i18n="products.goldDesc">From 1g to 1kg — 999.9 fine gold</p>
           </div>
@@ -770,8 +820,29 @@ img{max-width:100%;display:block}
         <div class="product-card-inner">
           <div class="product-front">
             <span class="product-tag">999.0</span>
-            <div class="product-icon"><div class="product-icon-glow"></div>
-              <svg viewBox="0 0 120 120" fill="none"><path d="M25 85L15 55h90l-10 30H25z" fill="url(#sb1)" stroke="#C0C0C0" stroke-width="1"/><path d="M15 55l20-20h50l20 20H15z" fill="url(#sb2)" stroke="#C0C0C0" stroke-width="1"/><text x="60" y="74" text-anchor="middle" fill="#808080" font-size="10" font-family="serif" opacity=".7">999.0</text><defs><linearGradient id="sb1" x1="15" y1="55" x2="105" y2="85"><stop stop-color="#C0C0C0"/><stop offset=".5" stop-color="#E8E8E8"/><stop offset="1" stop-color="#A0A0A0"/></linearGradient><linearGradient id="sb2" x1="15" y1="35" x2="105" y2="55"><stop stop-color="#E0E0E0"/><stop offset=".5" stop-color="#F5F5F5"/><stop offset="1" stop-color="#C0C0C0"/></linearGradient></defs></svg>
+            <div class="product-icon"><div class="product-icon-glow" style="background:radial-gradient(circle,rgba(180,180,190,.12),transparent 70%)"></div>
+              <svg viewBox="0 0 200 160" fill="none">
+                <ellipse cx="105" cy="138" rx="70" ry="8" fill="rgba(0,0,0,.3)" filter="blur(4px)"/>
+                <path d="M30 105 L55 120 L170 120 L145 105 Z" fill="#606068"/>
+                <path d="M30 60 L30 105 L145 105 L145 60 Z" fill="url(#sbar-front)"/>
+                <path d="M30 60 L30 105 L145 105 L145 60 Z" fill="url(#sbar-streak)" opacity=".5"/>
+                <path d="M30 60 L55 42 L170 42 L145 60 Z" fill="url(#sbar-top)"/>
+                <path d="M30 60 L55 42 L170 42 L145 60 Z" fill="url(#sbar-topshine)" opacity=".6"/>
+                <path d="M145 60 L170 42 L170 120 L145 105 Z" fill="url(#sbar-right)"/>
+                <path d="M36 66 L36 99 L139 99 L139 66 Z" fill="none" stroke="rgba(160,160,170,.12)" stroke-width=".5"/>
+                <text x="87" y="79" text-anchor="middle" font-family="serif" font-size="7" font-weight="600" fill="rgba(60,60,70,.4)" letter-spacing="1.5">FINE</text>
+                <text x="87" y="89" text-anchor="middle" font-family="serif" font-size="7" font-weight="600" fill="rgba(60,60,70,.4)" letter-spacing="1.5">SILVER</text>
+                <text x="100" y="54" text-anchor="middle" font-family="serif" font-size="5" fill="rgba(60,60,70,.3)" letter-spacing="1">999.0</text>
+                <path d="M30 60 L145 60" stroke="rgba(220,220,230,.25)" stroke-width=".5"/>
+                <path d="M145 60 L170 42" stroke="rgba(220,220,230,.12)" stroke-width=".5"/>
+                <defs>
+                  <linearGradient id="sbar-front" x1="30" y1="60" x2="30" y2="105"><stop stop-color="#b0b0b8"/><stop offset=".3" stop-color="#9a9aa2"/><stop offset=".7" stop-color="#88888f"/><stop offset="1" stop-color="#78787f"/></linearGradient>
+                  <linearGradient id="sbar-streak" x1="30" y1="80" x2="145" y2="80"><stop stop-color="transparent"/><stop offset=".3" stop-color="rgba(230,230,240,.1)"/><stop offset=".5" stop-color="rgba(240,240,250,.18)"/><stop offset=".7" stop-color="rgba(230,230,240,.08)"/><stop offset="1" stop-color="transparent"/></linearGradient>
+                  <linearGradient id="sbar-top" x1="55" y1="42" x2="55" y2="60"><stop stop-color="#d0d0d8"/><stop offset=".5" stop-color="#c0c0c8"/><stop offset="1" stop-color="#a8a8b0"/></linearGradient>
+                  <linearGradient id="sbar-topshine" x1="50" y1="42" x2="160" y2="60"><stop stop-color="rgba(255,255,255,.35)"/><stop offset=".4" stop-color="transparent"/><stop offset="1" stop-color="rgba(255,255,255,.08)"/></linearGradient>
+                  <linearGradient id="sbar-right" x1="145" y1="42" x2="170" y2="120"><stop stop-color="#98989f"/><stop offset=".4" stop-color="#7a7a82"/><stop offset="1" stop-color="#606068"/></linearGradient>
+                </defs>
+              </svg>
             </div>
             <h3 data-i18n="products.silver">Silver Bars</h3><p data-i18n="products.silverDesc">From 1g to 1kg — 999.0 fine silver</p>
           </div>
@@ -787,8 +858,45 @@ img{max-width:100%;display:block}
         <div class="product-card-inner">
           <div class="product-front">
             <span class="product-tag">Limited</span>
-            <div class="product-icon"><div class="product-icon-glow"></div>
-              <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="65" rx="35" ry="35" fill="url(#c1)" stroke="#D4AF37" stroke-width="1.5"/><ellipse cx="60" cy="60" rx="35" ry="35" fill="url(#c2)" stroke="#D4AF37" stroke-width="1.5"/><ellipse cx="60" cy="60" rx="28" ry="28" stroke="#B8860B" stroke-width=".7" opacity=".5"/><text x="60" y="57" text-anchor="middle" fill="#B8860B" font-size="14" font-weight="bold" font-family="serif" opacity=".7">BG</text><text x="60" y="70" text-anchor="middle" fill="#B8860B" font-size="7" font-family="serif" opacity=".5">FINE GOLD</text><defs><linearGradient id="c1" x1="25" y1="30" x2="95" y2="100"><stop stop-color="#B8860B"/><stop offset="1" stop-color="#8B6914"/></linearGradient><linearGradient id="c2" x1="25" y1="25" x2="95" y2="95"><stop stop-color="#F0D058"/><stop offset=".3" stop-color="#FFD700"/><stop offset=".7" stop-color="#D4AF37"/><stop offset="1" stop-color="#B8860B"/></linearGradient></defs></svg>
+            <div class="product-icon"><div class="product-icon-glow" style="background:radial-gradient(circle at 40% 40%,rgba(212,175,55,.2),transparent 60%)"></div>
+              <svg viewBox="0 0 160 160" fill="none">
+                <!-- Coin glow -->
+                <ellipse cx="80" cy="85" rx="55" ry="10" fill="rgba(180,140,30,.12)" filter="blur(6px)"/>
+                <!-- Coin edge (thickness) -->
+                <ellipse cx="80" cy="84" rx="50" ry="50" fill="url(#coin-edge)"/>
+                <!-- Coin face -->
+                <ellipse cx="80" cy="80" rx="50" ry="50" fill="url(#coin-face)"/>
+                <!-- Specular highlight -->
+                <ellipse cx="80" cy="80" rx="50" ry="50" fill="url(#coin-shine)" opacity=".6"/>
+                <!-- Outer rim -->
+                <ellipse cx="80" cy="80" rx="48" ry="48" fill="none" stroke="rgba(140,110,20,.3)" stroke-width="1.5"/>
+                <ellipse cx="80" cy="80" rx="44" ry="44" fill="none" stroke="rgba(140,110,20,.2)" stroke-width=".5"/>
+                <!-- Dots around rim -->
+                <circle cx="80" cy="33" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="104" cy="38" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="121" cy="56" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="126" cy="80" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="121" cy="104" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="104" cy="121" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="80" cy="126" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="56" cy="121" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="39" cy="104" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="34" cy="80" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="39" cy="56" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <circle cx="56" cy="38" r="1.2" fill="rgba(140,110,20,.25)"/>
+                <!-- Inner decorative ring -->
+                <ellipse cx="80" cy="80" rx="36" ry="36" fill="none" stroke="rgba(140,110,20,.18)" stroke-width=".7"/>
+                <!-- Text -->
+                <text x="80" y="74" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="20" font-weight="700" fill="rgba(100,75,15,.55)">BG</text>
+                <text x="80" y="88" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="8" font-weight="600" fill="rgba(100,75,15,.45)" letter-spacing="1.5">FINE GOLD</text>
+                <!-- Stars below -->
+                <text x="80" y="100" text-anchor="middle" font-family="sans-serif" font-size="6" fill="rgba(100,75,15,.3)">&#x2726; &#x2605; &#x2726; &#x2605; &#x2726;</text>
+                <defs>
+                  <linearGradient id="coin-edge" x1="30" y1="30" x2="130" y2="130"><stop stop-color="#8a6c14"/><stop offset="1" stop-color="#6a5410"/></linearGradient>
+                  <radialGradient id="coin-face" cx="45%" cy="40%" r="55%"><stop stop-color="#d4b040"/><stop offset=".3" stop-color="#c4a035"/><stop offset=".6" stop-color="#b8922c"/><stop offset="1" stop-color="#9a7a1e"/></radialGradient>
+                  <radialGradient id="coin-shine" cx="35%" cy="30%" r="60%"><stop stop-color="rgba(255,240,170,.3)"/><stop offset=".4" stop-color="transparent"/><stop offset="1" stop-color="rgba(80,60,10,.08)"/></radialGradient>
+                </defs>
+              </svg>
             </div>
             <h3 data-i18n="products.coins">Minted Coins</h3><p data-i18n="products.coinsDesc">Local, sacred, vintage &amp; popular varieties</p>
           </div>
