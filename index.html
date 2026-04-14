@@ -84,7 +84,39 @@ img{max-width:100%;display:block}
 .mobile-menu.open{display:flex;opacity:1}
 .mobile-menu a{font-family:var(--font-heading);font-size:2rem;font-weight:300;color:var(--gray-200);transition:color .3s}
 .mobile-menu a:hover{color:var(--gold-300)}
-@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}}
+/* Language Switcher */
+.lang-switch{position:relative;display:flex;align-items:center;z-index:1002;margin-left:1.2rem}
+.lang-btn{display:flex;align-items:center;gap:.4rem;padding:.4rem .7rem;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);cursor:pointer;font-family:var(--font-body);font-size:.72rem;font-weight:600;letter-spacing:.12em;color:var(--gold-300);transition:all .3s;text-transform:uppercase}
+.lang-btn:hover{border-color:var(--gold-400);background:rgba(212,175,55,.15)}
+.lang-btn svg{width:12px;height:12px;stroke:var(--gold-400);fill:none;stroke-width:2;transition:transform .3s}
+.lang-switch.open .lang-btn svg{transform:rotate(180deg)}
+.lang-dropdown{position:absolute;top:calc(100% + 6px);right:0;min-width:130px;background:rgba(10,10,10,.95);backdrop-filter:blur(20px);border:1px solid rgba(212,175,55,.15);opacity:0;visibility:hidden;transform:translateY(-8px);transition:all .3s var(--ease-out-expo);z-index:1003}
+.lang-switch.open .lang-dropdown{opacity:1;visibility:visible;transform:translateY(0)}
+.lang-option{display:flex;align-items:center;gap:.6rem;padding:.6rem 1rem;font-family:var(--font-body);font-size:.78rem;font-weight:400;color:var(--gray-300);cursor:pointer;transition:all .3s;letter-spacing:.05em}
+.lang-option:hover{background:rgba(212,175,55,.08);color:var(--gold-300)}
+.lang-option.active{color:var(--gold-400);font-weight:600}
+.lang-option.active::after{content:'';width:4px;height:4px;border-radius:50%;background:var(--gold-400);margin-left:auto}
+.lang-flag{font-size:.9rem;line-height:1}
+
+/* RTL support */
+[dir="rtl"]{direction:rtl;text-align:right}
+[dir="rtl"] .nav-links{direction:ltr}
+[dir="rtl"] .section-label::before{display:none}
+[dir="rtl"] .section-label::after{content:'';width:40px;height:1px;background:var(--gold-400)}
+[dir="rtl"] .hero-badge{direction:rtl}
+[dir="rtl"] .about-grid{direction:rtl}
+[dir="rtl"] .trust-feature{direction:rtl}
+[dir="rtl"] .trust-feature:hover{padding-left:1.5rem;padding-right:2rem}
+[dir="rtl"] .trust-feature::before{left:auto;right:0}
+[dir="rtl"] .contact-info-item{direction:rtl}
+[dir="rtl"] .footer-col a:hover{padding-left:0;padding-right:.5rem}
+[dir="rtl"] .about-image-frame{right:auto;left:-15px}
+[dir="rtl"] .form-group input,[dir="rtl"] .form-group textarea,[dir="rtl"] .form-group select{text-align:right}
+[dir="rtl"] .contact-form-wrapper h3,[dir="rtl"] .contact-form-wrapper p{text-align:right}
+[dir="rtl"] .hero h1,[dir="rtl"] .hero-desc,[dir="rtl"] .hero-buttons{text-align:right}
+[dir="rtl"] .footer-grid{direction:rtl}
+
+@media(max-width:900px){.nav-links{display:none}.hamburger{display:flex}.lang-switch{margin-left:.5rem}}
 
 /* ══════ HERO ══════ */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:radial-gradient(ellipse at 30% 50%,rgba(212,175,55,.05) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(184,134,11,.04) 0%,transparent 50%),var(--black-900)}
@@ -548,24 +580,37 @@ img{max-width:100%;display:block}
       <div class="nav-logo-text"><span>Budget Gold</span></div>
     </a>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#products">Products</a>
-      <a href="#services">Services</a>
-      <a href="#values">Values</a>
-      <a href="#trust">Why Us</a>
-      <a href="#contact" class="nav-cta">Contact</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#products" data-i18n="nav.products">Products</a>
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#values" data-i18n="nav.values">Values</a>
+      <a href="#trust" data-i18n="nav.whyus">Why Us</a>
+      <a href="#contact" class="nav-cta" data-i18n="nav.contact">Contact</a>
     </div>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <div style="display:flex;align-items:center">
+      <div class="lang-switch" id="langSwitch">
+        <div class="lang-btn" id="langBtn">
+          <span id="langCurrent">AR</span>
+          <svg viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+        <div class="lang-dropdown" id="langDropdown">
+          <div class="lang-option active" data-lang="en"><span class="lang-flag">🇬🇧</span> English</div>
+          <div class="lang-option" data-lang="ar"><span class="lang-flag">🇦🇪</span> العربية</div>
+          <div class="lang-option" data-lang="ru"><span class="lang-flag">🇷🇺</span> Русский</div>
+        </div>
+      </div>
+      <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    </div>
   </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#about" class="mobile-link">About</a>
-  <a href="#products" class="mobile-link">Products</a>
-  <a href="#services" class="mobile-link">Services</a>
-  <a href="#values" class="mobile-link">Values</a>
-  <a href="#trust" class="mobile-link">Why Us</a>
-  <a href="#contact" class="mobile-link">Contact</a>
+  <a href="#about" class="mobile-link" data-i18n="nav.about">About</a>
+  <a href="#products" class="mobile-link" data-i18n="nav.products">Products</a>
+  <a href="#services" class="mobile-link" data-i18n="nav.services">Services</a>
+  <a href="#values" class="mobile-link" data-i18n="nav.values">Values</a>
+  <a href="#trust" class="mobile-link" data-i18n="nav.whyus">Why Us</a>
+  <a href="#contact" class="mobile-link" data-i18n="nav.contact">Contact</a>
 </div>
 
 <!-- ═══════════ HERO ═══════════ -->
@@ -584,12 +629,12 @@ img{max-width:100%;display:block}
 
   <div class="hero-content">
     <div class="hero-text">
-      <div class="hero-badge"><span class="hero-badge-dot"></span>Dubai Gold Souk — Est. 2023</div>
-      <h1>Your Path to<em>Financial Security</em></h1>
-      <p class="hero-desc">Specialized in precious metals trading — buying and selling physical gold &amp; silver bars at competitive spot market prices from the heart of Dubai.</p>
+      <div class="hero-badge"><span class="hero-badge-dot"></span><span data-i18n="hero.badge">Dubai Gold Souk — Est. 2023</span></div>
+      <h1 data-i18n="hero.title">Your Path to<em data-i18n="hero.titleEm">Financial Security</em></h1>
+      <p class="hero-desc" data-i18n="hero.desc">Specialized in precious metals trading — buying and selling physical gold &amp; silver bars at competitive spot market prices from the heart of Dubai.</p>
       <div class="hero-buttons">
-        <a href="#products" class="btn-primary">Explore Products <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <a href="#contact" class="btn-secondary">Get in Touch</a>
+        <a href="#products" class="btn-primary"><span data-i18n="hero.cta1">Explore Products</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        <a href="#contact" class="btn-secondary" data-i18n="hero.cta2">Get in Touch</a>
       </div>
     </div>
 
@@ -650,21 +695,21 @@ img{max-width:100%;display:block}
       <div class="about-image reveal">
         <div class="about-image-inner">
           <div class="about-image-pattern"></div>
-          <div class="about-image-content"><div class="big-year">BG</div><p>Budget Gold L.L.C.</p></div>
+          <div class="about-image-content"><div class="big-year">BG</div><p data-i18n="about.company">Budget Gold L.L.C.</p></div>
         </div>
         <div class="about-image-frame"></div>
       </div>
       <div class="about-text">
-        <div class="section-label reveal">About Us</div>
-        <h2 class="section-title reveal reveal-delay-1">A Trusted Name in <em>Precious Metals</em></h2>
-        <p class="reveal reveal-delay-2">Budget Gold has established itself as a trusted and reliable partner for investors seeking to navigate the world of gold and silver trading, based in Dubai — a global hub for precious metals.</p>
-        <p class="reveal reveal-delay-3">We are specialized in commodities trading, buying and selling physical gold and silver bars at very attractive spot market prices. Our online gold &amp; silver trading facility ensures our valued customers can transact with confidence from anywhere in the world.</p>
+        <div class="section-label reveal" data-i18n="about.label">About Us</div>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="about.title">A Trusted Name in <em data-i18n="about.titleEm">Precious Metals</em></h2>
+        <p class="reveal reveal-delay-2" data-i18n="about.p1">Budget Gold has established itself as a trusted and reliable partner for investors seeking to navigate the world of gold and silver trading, based in Dubai — a global hub for precious metals.</p>
+        <p class="reveal reveal-delay-3" data-i18n="about.p2">We are specialized in commodities trading, buying and selling physical gold and silver bars at very attractive spot market prices. Our online gold &amp; silver trading facility ensures our valued customers can transact with confidence from anywhere in the world.</p>
         <div class="gold-divider reveal reveal-delay-3"></div>
         <div class="about-stats reveal reveal-delay-4">
-          <div class="stat-item"><h3><span class="counter" data-target="3200">0</span>+</h3><p>Transactions</p></div>
-          <div class="stat-item"><h3><span class="counter" data-target="280">0</span>+</h3><p>Projects Realized</p></div>
-          <div class="stat-item"><h3><span class="counter" data-target="160">0</span>+</h3><p>Brands Served</p></div>
-          <div class="stat-item"><h3><span class="counter" data-target="40">0</span>+</h3><p>Loyal Clients</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="3200">0</span>+</h3><p data-i18n="about.stat1">Transactions</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="280">0</span>+</h3><p data-i18n="about.stat2">Projects Realized</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="160">0</span>+</h3><p data-i18n="about.stat3">Brands Served</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="40">0</span>+</h3><p data-i18n="about.stat4">Loyal Clients</p></div>
         </div>
       </div>
     </div>
@@ -675,20 +720,20 @@ img{max-width:100%;display:block}
 <section class="mission" id="mission">
   <div class="container">
     <div style="text-align:center;margin-bottom:3rem">
-      <div class="section-label reveal" style="justify-content:center"><span style="display:none"></span>Our Purpose</div>
-      <h2 class="section-title reveal reveal-delay-1">Driven by <em>Vision</em></h2>
+      <div class="section-label reveal" style="justify-content:center"><span style="display:none"></span><span data-i18n="mission.label">Our Purpose</span></div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n="mission.title">Driven by <em data-i18n="mission.titleEm">Vision</em></h2>
     </div>
     <div class="mission-grid">
       <div class="mission-card reveal">
         <div class="big-icon">M</div>
-        <h3>Our Mission</h3>
-        <p>To be the leading company in precious metals trading, ensuring stakeholder happiness and satisfaction through transparent practices and competitive pricing.</p>
+        <h3 data-i18n="mission.missionH">Our Mission</h3>
+        <p data-i18n="mission.missionP">To be the leading company in precious metals trading, ensuring stakeholder happiness and satisfaction through transparent practices and competitive pricing.</p>
         <div class="quote-mark">"</div>
       </div>
       <div class="mission-card reveal reveal-delay-2">
         <div class="big-icon">V</div>
-        <h3>Our Vision</h3>
-        <p>Continue achieving sustainable quality and growth to become a world leader in gold trading, setting new standards for excellence in the precious metals industry.</p>
+        <h3 data-i18n="mission.visionH">Our Vision</h3>
+        <p data-i18n="mission.visionP">Continue achieving sustainable quality and growth to become a world leader in gold trading, setting new standards for excellence in the precious metals industry.</p>
         <div class="quote-mark">"</div>
       </div>
     </div>
@@ -699,9 +744,9 @@ img{max-width:100%;display:block}
 <section class="products" id="products">
   <div class="container">
     <div class="products-header">
-      <div class="section-label reveal">Our Products</div>
-      <h2 class="section-title reveal reveal-delay-1">Premium <em>Precious Metals</em></h2>
-      <p class="reveal reveal-delay-2" style="color:var(--gray-400);font-size:1rem">Carefully sourced and certified gold and silver products, available in a range of weights to match every investment strategy.</p>
+      <div class="section-label reveal" data-i18n="products.label">Our Products</div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n="products.title">Premium <em data-i18n="products.titleEm">Precious Metals</em></h2>
+      <p class="reveal reveal-delay-2" style="color:var(--gray-400);font-size:1rem" data-i18n="products.desc">Carefully sourced and certified gold and silver products, available in a range of weights to match every investment strategy.</p>
     </div>
     <div class="products-grid">
       <div class="product-card reveal">
@@ -711,12 +756,12 @@ img{max-width:100%;display:block}
             <div class="product-icon"><div class="product-icon-glow"></div>
               <svg viewBox="0 0 120 120" fill="none"><path d="M25 85L15 55h90l-10 30H25z" fill="url(#gb1)" stroke="#D4AF37" stroke-width="1"/><path d="M15 55l20-20h50l20 20H15z" fill="url(#gb2)" stroke="#D4AF37" stroke-width="1"/><text x="60" y="74" text-anchor="middle" fill="#B8860B" font-size="10" font-family="serif" opacity=".7">999.9</text><defs><linearGradient id="gb1" x1="15" y1="55" x2="105" y2="85"><stop stop-color="#D4AF37"/><stop offset=".5" stop-color="#FFD700"/><stop offset="1" stop-color="#B8860B"/></linearGradient><linearGradient id="gb2" x1="15" y1="35" x2="105" y2="55"><stop stop-color="#F0D058"/><stop offset=".5" stop-color="#FFD700"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs></svg>
             </div>
-            <h3>Gold Bars</h3><p>From 1g to 1kg — 999.9 fine gold</p>
+            <h3 data-i18n="products.gold">Gold Bars</h3><p data-i18n="products.goldDesc">From 1g to 1kg — 999.9 fine gold</p>
           </div>
           <div class="product-back">
-            <h3>Gold Bars</h3>
-            <ul><li>1 Gram Gold Bar</li><li>5 Gram Gold Bar</li><li>10 Gram Gold Bar</li><li>50 Gram Gold Bar</li><li>100 Gram Gold Bar</li><li>1 Kilogram Gold Bar</li></ul>
-            <a href="#contact" class="btn-primary">Inquire Now</a>
+            <h3 data-i18n="products.gold">Gold Bars</h3>
+            <ul><li data-i18n="products.g1">1 Gram Gold Bar</li><li data-i18n="products.g5">5 Gram Gold Bar</li><li data-i18n="products.g10">10 Gram Gold Bar</li><li data-i18n="products.g50">50 Gram Gold Bar</li><li data-i18n="products.g100">100 Gram Gold Bar</li><li data-i18n="products.g1kg">1 Kilogram Gold Bar</li></ul>
+            <a href="#contact" class="btn-primary" data-i18n="products.inquire">Inquire Now</a>
           </div>
         </div>
       </div>
@@ -728,12 +773,12 @@ img{max-width:100%;display:block}
             <div class="product-icon"><div class="product-icon-glow"></div>
               <svg viewBox="0 0 120 120" fill="none"><path d="M25 85L15 55h90l-10 30H25z" fill="url(#sb1)" stroke="#C0C0C0" stroke-width="1"/><path d="M15 55l20-20h50l20 20H15z" fill="url(#sb2)" stroke="#C0C0C0" stroke-width="1"/><text x="60" y="74" text-anchor="middle" fill="#808080" font-size="10" font-family="serif" opacity=".7">999.0</text><defs><linearGradient id="sb1" x1="15" y1="55" x2="105" y2="85"><stop stop-color="#C0C0C0"/><stop offset=".5" stop-color="#E8E8E8"/><stop offset="1" stop-color="#A0A0A0"/></linearGradient><linearGradient id="sb2" x1="15" y1="35" x2="105" y2="55"><stop stop-color="#E0E0E0"/><stop offset=".5" stop-color="#F5F5F5"/><stop offset="1" stop-color="#C0C0C0"/></linearGradient></defs></svg>
             </div>
-            <h3>Silver Bars</h3><p>From 1g to 1kg — 999.0 fine silver</p>
+            <h3 data-i18n="products.silver">Silver Bars</h3><p data-i18n="products.silverDesc">From 1g to 1kg — 999.0 fine silver</p>
           </div>
           <div class="product-back">
-            <h3>Silver Bars</h3>
-            <ul><li>1 Gram Silver Bar</li><li>5 Gram Silver Bar</li><li>10 Gram Silver Bar</li><li>50 Gram Silver Bar</li><li>100 Gram Silver Bar</li><li>1 Kilogram Silver Bar</li></ul>
-            <a href="#contact" class="btn-primary">Inquire Now</a>
+            <h3 data-i18n="products.silver">Silver Bars</h3>
+            <ul><li data-i18n="products.s1">1 Gram Silver Bar</li><li data-i18n="products.s5">5 Gram Silver Bar</li><li data-i18n="products.s10">10 Gram Silver Bar</li><li data-i18n="products.s50">50 Gram Silver Bar</li><li data-i18n="products.s100">100 Gram Silver Bar</li><li data-i18n="products.s1kg">1 Kilogram Silver Bar</li></ul>
+            <a href="#contact" class="btn-primary" data-i18n="products.inquire">Inquire Now</a>
           </div>
         </div>
       </div>
@@ -745,12 +790,12 @@ img{max-width:100%;display:block}
             <div class="product-icon"><div class="product-icon-glow"></div>
               <svg viewBox="0 0 120 120" fill="none"><ellipse cx="60" cy="65" rx="35" ry="35" fill="url(#c1)" stroke="#D4AF37" stroke-width="1.5"/><ellipse cx="60" cy="60" rx="35" ry="35" fill="url(#c2)" stroke="#D4AF37" stroke-width="1.5"/><ellipse cx="60" cy="60" rx="28" ry="28" stroke="#B8860B" stroke-width=".7" opacity=".5"/><text x="60" y="57" text-anchor="middle" fill="#B8860B" font-size="14" font-weight="bold" font-family="serif" opacity=".7">BG</text><text x="60" y="70" text-anchor="middle" fill="#B8860B" font-size="7" font-family="serif" opacity=".5">FINE GOLD</text><defs><linearGradient id="c1" x1="25" y1="30" x2="95" y2="100"><stop stop-color="#B8860B"/><stop offset="1" stop-color="#8B6914"/></linearGradient><linearGradient id="c2" x1="25" y1="25" x2="95" y2="95"><stop stop-color="#F0D058"/><stop offset=".3" stop-color="#FFD700"/><stop offset=".7" stop-color="#D4AF37"/><stop offset="1" stop-color="#B8860B"/></linearGradient></defs></svg>
             </div>
-            <h3>Minted Coins</h3><p>Local, sacred, vintage &amp; popular varieties</p>
+            <h3 data-i18n="products.coins">Minted Coins</h3><p data-i18n="products.coinsDesc">Local, sacred, vintage &amp; popular varieties</p>
           </div>
           <div class="product-back">
-            <h3>Minted Coins</h3>
-            <ul><li>Local Heritage Coins</li><li>Sacred Collection Coins</li><li>Vintage Edition Coins</li><li>Popular Bullion Coins</li><li>Limited Edition Mints</li><li>Custom Minted Coins</li></ul>
-            <a href="#contact" class="btn-primary">Inquire Now</a>
+            <h3 data-i18n="products.coins">Minted Coins</h3>
+            <ul><li data-i18n="products.c1">Local Heritage Coins</li><li data-i18n="products.c2">Sacred Collection Coins</li><li data-i18n="products.c3">Vintage Edition Coins</li><li data-i18n="products.c4">Popular Bullion Coins</li><li data-i18n="products.c5">Limited Edition Mints</li><li data-i18n="products.c6">Custom Minted Coins</li></ul>
+            <a href="#contact" class="btn-primary" data-i18n="products.inquire">Inquire Now</a>
           </div>
         </div>
       </div>
@@ -762,29 +807,29 @@ img{max-width:100%;display:block}
 <section class="services" id="services">
   <div class="container">
     <div class="services-header">
-      <div class="section-label reveal">What We Offer</div>
-      <h2 class="section-title reveal reveal-delay-1">Comprehensive <em>Services</em></h2>
+      <div class="section-label reveal" data-i18n="services.label">What We Offer</div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n="services.title">Comprehensive <em data-i18n="services.titleEm">Services</em></h2>
     </div>
     <div class="services-grid">
       <div class="service-card reveal">
         <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></div>
-        <h3>Secure Storage</h3><p>State-of-the-art vaulting facilities for safekeeping your precious metals investments.</p>
+        <h3 data-i18n="services.storageH">Secure Storage</h3><p data-i18n="services.storageP">State-of-the-art vaulting facilities for safekeeping your precious metals investments.</p>
       </div>
       <div class="service-card reveal reveal-delay-1">
         <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
-        <h3>Consultation</h3><p>Expert guidance on investments, market trends, and portfolio diversification strategies.</p>
+        <h3 data-i18n="services.consultH">Consultation</h3><p data-i18n="services.consultP">Expert guidance on investments, market trends, and portfolio diversification strategies.</p>
       </div>
       <div class="service-card reveal reveal-delay-2">
         <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg></div>
-        <h3>Testing &amp; Refining</h3><p>Professional assaying and authenticity verification using certified methods.</p>
+        <h3 data-i18n="services.testH">Testing &amp; Refining</h3><p data-i18n="services.testP">Professional assaying and authenticity verification using certified methods.</p>
       </div>
       <div class="service-card reveal reveal-delay-3">
         <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-        <h3>Metal Trading</h3><p>Buy and sell gold and silver at competitive spot market prices with full transparency.</p>
+        <h3 data-i18n="services.tradeH">Metal Trading</h3><p data-i18n="services.tradeP">Buy and sell gold and silver at competitive spot market prices with full transparency.</p>
       </div>
       <div class="service-card reveal reveal-delay-4">
         <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4a2 2 0 012 2v9a2 2 0 01-2 2H6a2 2 0 01-2-2v-1"/></svg></div>
-        <h3>Logistics</h3><p>Safe, insured delivery of precious metals worldwide with full tracking and security.</p>
+        <h3 data-i18n="services.logistH">Logistics</h3><p data-i18n="services.logistP">Safe, insured delivery of precious metals worldwide with full tracking and security.</p>
       </div>
     </div>
   </div>
@@ -794,14 +839,14 @@ img{max-width:100%;display:block}
 <section class="values" id="values">
   <div class="container">
     <div style="text-align:center">
-      <div class="section-label reveal" style="justify-content:center">Our Core Values</div>
-      <h2 class="section-title reveal reveal-delay-1">Built on <em>Principles</em></h2>
+      <div class="section-label reveal" style="justify-content:center" data-i18n="values.label">Our Core Values</div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n="values.title">Built on <em data-i18n="values.titleEm">Principles</em></h2>
     </div>
     <div class="values-grid">
-      <div class="value-card reveal"><div class="value-number">01</div><h3>Quality</h3><p>Delivering high-quality products and services that meet the most rigorous international standards.</p></div>
-      <div class="value-card reveal reveal-delay-1"><div class="value-number">02</div><h3>Innovation</h3><p>Continuous improvement and modern solutions driving sustainable growth in precious metals trading.</p></div>
-      <div class="value-card reveal reveal-delay-2"><div class="value-number">03</div><h3>Confidence</h3><p>Building lasting trust with our clients through transparency and unwavering commitment to their goals.</p></div>
-      <div class="value-card reveal reveal-delay-3"><div class="value-number">04</div><h3>Integrity</h3><p>Honesty and trust form the unshakable foundation of every relationship we build.</p></div>
+      <div class="value-card reveal"><div class="value-number">01</div><h3 data-i18n="values.v1h">Quality</h3><p data-i18n="values.v1p">Delivering high-quality products and services that meet the most rigorous international standards.</p></div>
+      <div class="value-card reveal reveal-delay-1"><div class="value-number">02</div><h3 data-i18n="values.v2h">Innovation</h3><p data-i18n="values.v2p">Continuous improvement and modern solutions driving sustainable growth in precious metals trading.</p></div>
+      <div class="value-card reveal reveal-delay-2"><div class="value-number">03</div><h3 data-i18n="values.v3h">Confidence</h3><p data-i18n="values.v3p">Building lasting trust with our clients through transparency and unwavering commitment to their goals.</p></div>
+      <div class="value-card reveal reveal-delay-3"><div class="value-number">04</div><h3 data-i18n="values.v4h">Integrity</h3><p data-i18n="values.v4p">Honesty and trust form the unshakable foundation of every relationship we build.</p></div>
     </div>
   </div>
 </section>
@@ -810,9 +855,9 @@ img{max-width:100%;display:block}
 <section class="cta-banner">
   <div class="container">
     <div class="cta-inner reveal">
-      <h2>Ready to Invest in <em class="gold-text">Your Future?</em></h2>
-      <p>Start your precious metals journey today with Budget Gold. Our expert team is ready to guide you through every step of the process.</p>
-      <a href="#contact" class="btn-primary">Start Your Journey <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <h2 data-i18n="cta.title">Ready to Invest in <em class="gold-text" data-i18n="cta.titleEm">Your Future?</em></h2>
+      <p data-i18n="cta.desc">Start your precious metals journey today with Budget Gold. Our expert team is ready to guide you through every step of the process.</p>
+      <a href="#contact" class="btn-primary"><span data-i18n="cta.btn">Start Your Journey</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 </section>
@@ -822,13 +867,13 @@ img{max-width:100%;display:block}
   <div class="container">
     <div class="trust-grid">
       <div>
-        <div class="section-label reveal">Why Choose Us</div>
-        <h2 class="section-title reveal reveal-delay-1">The <em>Budget Gold</em> Advantage</h2>
+        <div class="section-label reveal" data-i18n="trust.label">Why Choose Us</div>
+        <h2 class="section-title reveal reveal-delay-1" data-i18n="trust.title">The <em data-i18n="trust.titleEm">Budget Gold</em> Advantage</h2>
         <div class="trust-features">
-          <div class="trust-feature reveal reveal-delay-2"><div class="trust-feature-num">01</div><div><h3>Dubai Gold Souk Location</h3><p>Strategically located in the world-renowned Gold Souk — the heart of global precious metals trading.</p></div></div>
-          <div class="trust-feature reveal reveal-delay-3"><div class="trust-feature-num">02</div><div><h3>Competitive Spot Prices</h3><p>We offer precious metals at very attractive spot market prices, ensuring maximum value for your investment.</p></div></div>
-          <div class="trust-feature reveal reveal-delay-4"><div class="trust-feature-num">03</div><div><h3>Certified Authenticity</h3><p>Every product undergoes rigorous testing and comes with full certification of purity and weight.</p></div></div>
-          <div class="trust-feature reveal reveal-delay-5"><div class="trust-feature-num">04</div><div><h3>Online Trading Platform</h3><p>Our online trading facility enables valued customers to transact securely from anywhere in the world.</p></div></div>
+          <div class="trust-feature reveal reveal-delay-2"><div class="trust-feature-num">01</div><div><h3 data-i18n="trust.t1h">Dubai Gold Souk Location</h3><p data-i18n="trust.t1p">Strategically located in the world-renowned Gold Souk — the heart of global precious metals trading.</p></div></div>
+          <div class="trust-feature reveal reveal-delay-3"><div class="trust-feature-num">02</div><div><h3 data-i18n="trust.t2h">Competitive Spot Prices</h3><p data-i18n="trust.t2p">We offer precious metals at very attractive spot market prices, ensuring maximum value for your investment.</p></div></div>
+          <div class="trust-feature reveal reveal-delay-4"><div class="trust-feature-num">03</div><div><h3 data-i18n="trust.t3h">Certified Authenticity</h3><p data-i18n="trust.t3p">Every product undergoes rigorous testing and comes with full certification of purity and weight.</p></div></div>
+          <div class="trust-feature reveal reveal-delay-5"><div class="trust-feature-num">04</div><div><h3 data-i18n="trust.t4h">Online Trading Platform</h3><p data-i18n="trust.t4p">Our online trading facility enables valued customers to transact securely from anywhere in the world.</p></div></div>
         </div>
       </div>
       <div class="trust-visual reveal">
@@ -836,7 +881,7 @@ img{max-width:100%;display:block}
           <div class="trust-circle-dot"></div><div class="trust-circle-dot"></div>
           <div class="trust-circle-dot"></div><div class="trust-circle-dot"></div>
         </div>
-        <div class="trust-center-text"><span>100%</span><p>Certified Pure</p></div>
+        <div class="trust-center-text"><span>100%</span><p data-i18n="trust.certified">Certified Pure</p></div>
       </div>
     </div>
   </div>
@@ -853,8 +898,8 @@ img{max-width:100%;display:block}
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       </div>
-      <div class="testimonial-quote">Budget Gold made investing in precious metals seamless and transparent. Their expertise and competitive pricing in the Dubai Gold Souk are unmatched.</div>
-      <div class="testimonial-author"><strong>Valued Client</strong> — Dubai, UAE</div>
+      <div class="testimonial-quote" data-i18n="testimonial.quote">Budget Gold made investing in precious metals seamless and transparent. Their expertise and competitive pricing in the Dubai Gold Souk are unmatched.</div>
+      <div class="testimonial-author" data-i18n="testimonial.author"><strong>Valued Client</strong> — Dubai, UAE</div>
     </div>
   </div>
 </section>
@@ -863,23 +908,23 @@ img{max-width:100%;display:block}
 <section class="contact" id="contact">
   <div class="container">
     <div style="text-align:center;margin-bottom:4rem">
-      <div class="section-label reveal" style="justify-content:center">Get In Touch</div>
-      <h2 class="section-title reveal reveal-delay-1">Let's <em>Connect</em></h2>
+      <div class="section-label reveal" style="justify-content:center" data-i18n="contact.label">Get In Touch</div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n="contact.title">Let's <em data-i18n="contact.titleEm">Connect</em></h2>
     </div>
     <div class="contact-grid">
       <div>
         <div class="contact-info">
           <div class="contact-info-item reveal">
             <div class="contact-info-icon"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-            <div><h4>Visit Us</h4><p>Office No. 103, HIND 3<br>(DEIRA WATERFRONT PROPERTIES)<br>Gold Souk, Dubai, UAE</p></div>
+            <div><h4 data-i18n="contact.visitH">Visit Us</h4><p data-i18n="contact.visitP">Office No. 103, HIND 3<br>(DEIRA WATERFRONT PROPERTIES)<br>Gold Souk, Dubai, UAE</p></div>
           </div>
           <div class="contact-info-item reveal reveal-delay-1">
             <div class="contact-info-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
-            <div><h4>Call Us</h4><p><a href="tel:+97145475873">+971 454 758 73</a><br><a href="tel:+971503555996">+971 503 555 996</a><br><a href="tel:+971502888232">+971 502 888 232</a><br><a href="tel:+971508899978">+971 508 899 978</a></p></div>
+            <div><h4 data-i18n="contact.callH">Call Us</h4><p><a href="tel:+97145475873">+971 454 758 73</a><br><a href="tel:+971503555996">+971 503 555 996</a><br><a href="tel:+971502888232">+971 502 888 232</a><br><a href="tel:+971508899978">+971 508 899 978</a></p></div>
           </div>
           <div class="contact-info-item reveal reveal-delay-2">
             <div class="contact-info-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><h4>Email Us</h4><p><a href="mailto:BG@budgetgold.net">BG@budgetgold.net</a><br><a href="mailto:Operation@budgetgold.net">Operation@budgetgold.net</a></p></div>
+            <div><h4 data-i18n="contact.emailH">Email Us</h4><p><a href="mailto:BG@budgetgold.net">BG@budgetgold.net</a><br><a href="mailto:Operation@budgetgold.net">Operation@budgetgold.net</a></p></div>
           </div>
         </div>
         <div class="contact-map reveal reveal-delay-3">
@@ -887,20 +932,20 @@ img{max-width:100%;display:block}
         </div>
       </div>
       <div class="contact-form-wrapper reveal reveal-delay-1">
-        <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:400;color:var(--gray-100);margin-bottom:.5rem">Send a Message</h3>
-        <p style="font-size:.88rem;color:var(--gray-500);margin-bottom:2rem">We'll respond within 24 hours.</p>
+        <h3 style="font-family:var(--font-heading);font-size:1.5rem;font-weight:400;color:var(--gray-100);margin-bottom:.5rem" data-i18n="contact.formTitle">Send a Message</h3>
+        <p style="font-size:.88rem;color:var(--gray-500);margin-bottom:2rem" data-i18n="contact.formDesc">We'll respond within 24 hours.</p>
         <form class="contact-form" onsubmit="handleSubmit(event)">
           <div class="form-row">
-            <div class="form-group"><label for="fn">First Name</label><input type="text" id="fn" required></div>
-            <div class="form-group"><label for="ln">Last Name</label><input type="text" id="ln" required></div>
+            <div class="form-group"><label for="fn" data-i18n="contact.fname">First Name</label><input type="text" id="fn" required></div>
+            <div class="form-group"><label for="ln" data-i18n="contact.lname">Last Name</label><input type="text" id="ln" required></div>
           </div>
           <div class="form-row">
-            <div class="form-group"><label for="em">Email</label><input type="email" id="em" required></div>
-            <div class="form-group"><label for="ph">Phone</label><input type="tel" id="ph"></div>
+            <div class="form-group"><label for="em" data-i18n="contact.email">Email</label><input type="email" id="em" required></div>
+            <div class="form-group"><label for="ph" data-i18n="contact.phone">Phone</label><input type="tel" id="ph"></div>
           </div>
-          <div class="form-group"><label for="int">Interest</label><select id="int"><option value="">Select your interest</option><option>Gold Bars</option><option>Silver Bars</option><option>Minted Coins</option><option>Storage Services</option><option>Testing & Refining</option><option>Consultation</option><option>Other</option></select></div>
-          <div class="form-group"><label for="msg">Message</label><textarea id="msg" required></textarea></div>
-          <button type="submit" class="btn-primary">Send Message <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
+          <div class="form-group"><label for="int" data-i18n="contact.interest">Interest</label><select id="int"><option value="" data-i18n="contact.selectInterest">Select your interest</option><option data-i18n="products.gold">Gold Bars</option><option data-i18n="products.silver">Silver Bars</option><option data-i18n="products.coins">Minted Coins</option><option data-i18n="services.storageH">Storage Services</option><option data-i18n="services.testH">Testing & Refining</option><option data-i18n="services.consultH">Consultation</option><option data-i18n="contact.other">Other</option></select></div>
+          <div class="form-group"><label for="msg" data-i18n="contact.message">Message</label><textarea id="msg" required></textarea></div>
+          <button type="submit" class="btn-primary"><span data-i18n="contact.send">Send Message</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg></button>
         </form>
       </div>
     </div>
@@ -916,14 +961,14 @@ img{max-width:100%;display:block}
           <div class="nav-logo-icon"><svg viewBox="0 0 42 42" fill="none"><rect x="1" y="1" width="40" height="40" rx="4" stroke="url(#lg2)" stroke-width="1.5"/><path d="M12 28V14h6.5c3.5 0 5.5 1.8 5.5 4.5 0 1.8-1 3.2-2.5 3.8 2 .5 3.2 2.2 3.2 4.2 0 3-2.2 5-5.8 5H12v-3.5zm4-10.5h2.2c1.3 0 2-.7 2-1.7s-.7-1.8-2-1.8H16v3.5zm0 7.5h2.8c1.5 0 2.3-.8 2.3-2s-.8-2-2.3-2H16V25z" fill="url(#lg2)"/><defs><linearGradient id="lg2" x1="0" y1="0" x2="42" y2="42"><stop stop-color="#D4AF37"/><stop offset=".5" stop-color="#FFD700"/><stop offset="1" stop-color="#B8860B"/></linearGradient></defs></svg></div>
           <div class="nav-logo-text"><span>Budget Gold</span></div>
         </a>
-        <p>Your trusted partner for precious metals trading in the heart of Dubai's Gold Souk.</p>
+        <p data-i18n="footer.desc">Your trusted partner for precious metals trading in the heart of Dubai's Gold Souk.</p>
       </div>
-      <div class="footer-col"><h4>Navigation</h4><a href="#about">About Us</a><a href="#products">Products</a><a href="#services">Services</a><a href="#values">Our Values</a><a href="#contact">Contact</a></div>
-      <div class="footer-col"><h4>Products</h4><a href="#products">Gold Bars</a><a href="#products">Silver Bars</a><a href="#products">Minted Coins</a><a href="#products">Custom Orders</a></div>
-      <div class="footer-col"><h4>Contact</h4><a href="tel:+97145475873">+971 454 758 73</a><a href="mailto:BG@budgetgold.net">BG@budgetgold.net</a><a href="#contact">Gold Souk, Dubai</a></div>
+      <div class="footer-col"><h4 data-i18n="footer.navH">Navigation</h4><a href="#about" data-i18n="footer.aboutUs">About Us</a><a href="#products" data-i18n="nav.products">Products</a><a href="#services" data-i18n="nav.services">Services</a><a href="#values" data-i18n="footer.ourValues">Our Values</a><a href="#contact" data-i18n="nav.contact">Contact</a></div>
+      <div class="footer-col"><h4 data-i18n="nav.products">Products</h4><a href="#products" data-i18n="products.gold">Gold Bars</a><a href="#products" data-i18n="products.silver">Silver Bars</a><a href="#products" data-i18n="products.coins">Minted Coins</a><a href="#products" data-i18n="footer.custom">Custom Orders</a></div>
+      <div class="footer-col"><h4 data-i18n="nav.contact">Contact</h4><a href="tel:+97145475873">+971 454 758 73</a><a href="mailto:BG@budgetgold.net">BG@budgetgold.net</a><a href="#contact" data-i18n="footer.location">Gold Souk, Dubai</a></div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024 Budget Gold L.L.C. All Rights Reserved.</p>
+      <p data-i18n="footer.copy">&copy; 2024 Budget Gold L.L.C. All Rights Reserved.</p>
       <div class="footer-socials">
         <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
         <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.832-1.438A9.955 9.955 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></a>
@@ -1144,6 +1189,238 @@ document.querySelector('.hero-radial').style.transform=`translate(calc(-50% + ${
     }
     animFrame = requestAnimationFrame(inertia);
   }, {passive:true});
+})();
+
+/* ═══════════════════════════════
+   i18n — LANGUAGE SWITCHER
+   EN / AR / RU
+   ═══════════════════════════════ */
+(function(){
+const T={
+en:{
+  'nav.about':'About','nav.products':'Products','nav.services':'Services','nav.values':'Values','nav.whyus':'Why Us','nav.contact':'Contact',
+  'hero.badge':'Dubai Gold Souk — Est. 2023','hero.title':'Your Path to','hero.titleEm':'Financial Security',
+  'hero.desc':'Specialized in precious metals trading — buying and selling physical gold & silver bars at competitive spot market prices from the heart of Dubai.',
+  'hero.cta1':'Explore Products','hero.cta2':'Get in Touch',
+  'about.label':'About Us','about.title':'A Trusted Name in ','about.titleEm':'Precious Metals','about.company':'Budget Gold L.L.C.',
+  'about.p1':'Budget Gold has established itself as a trusted and reliable partner for investors seeking to navigate the world of gold and silver trading, based in Dubai — a global hub for precious metals.',
+  'about.p2':'We are specialized in commodities trading, buying and selling physical gold and silver bars at very attractive spot market prices. Our online gold & silver trading facility ensures our valued customers can transact with confidence from anywhere in the world.',
+  'about.stat1':'Transactions','about.stat2':'Projects Realized','about.stat3':'Brands Served','about.stat4':'Loyal Clients',
+  'mission.label':'Our Purpose','mission.title':'Driven by ','mission.titleEm':'Vision',
+  'mission.missionH':'Our Mission','mission.missionP':'To be the leading company in precious metals trading, ensuring stakeholder happiness and satisfaction through transparent practices and competitive pricing.',
+  'mission.visionH':'Our Vision','mission.visionP':'Continue achieving sustainable quality and growth to become a world leader in gold trading, setting new standards for excellence in the precious metals industry.',
+  'products.label':'Our Products','products.title':'Premium ','products.titleEm':'Precious Metals',
+  'products.desc':'Carefully sourced and certified gold and silver products, available in a range of weights to match every investment strategy.',
+  'products.gold':'Gold Bars','products.goldDesc':'From 1g to 1kg — 999.9 fine gold',
+  'products.g1':'1 Gram Gold Bar','products.g5':'5 Gram Gold Bar','products.g10':'10 Gram Gold Bar','products.g50':'50 Gram Gold Bar','products.g100':'100 Gram Gold Bar','products.g1kg':'1 Kilogram Gold Bar',
+  'products.silver':'Silver Bars','products.silverDesc':'From 1g to 1kg — 999.0 fine silver',
+  'products.s1':'1 Gram Silver Bar','products.s5':'5 Gram Silver Bar','products.s10':'10 Gram Silver Bar','products.s50':'50 Gram Silver Bar','products.s100':'100 Gram Silver Bar','products.s1kg':'1 Kilogram Silver Bar',
+  'products.coins':'Minted Coins','products.coinsDesc':'Local, sacred, vintage & popular varieties',
+  'products.c1':'Local Heritage Coins','products.c2':'Sacred Collection Coins','products.c3':'Vintage Edition Coins','products.c4':'Popular Bullion Coins','products.c5':'Limited Edition Mints','products.c6':'Custom Minted Coins',
+  'products.inquire':'Inquire Now',
+  'services.label':'What We Offer','services.title':'Comprehensive ','services.titleEm':'Services',
+  'services.storageH':'Secure Storage','services.storageP':'State-of-the-art vaulting facilities for safekeeping your precious metals investments.',
+  'services.consultH':'Consultation','services.consultP':'Expert guidance on investments, market trends, and portfolio diversification strategies.',
+  'services.testH':'Testing & Refining','services.testP':'Professional assaying and authenticity verification using certified methods.',
+  'services.tradeH':'Metal Trading','services.tradeP':'Buy and sell gold and silver at competitive spot market prices with full transparency.',
+  'services.logistH':'Logistics','services.logistP':'Safe, insured delivery of precious metals worldwide with full tracking and security.',
+  'values.label':'Our Core Values','values.title':'Built on ','values.titleEm':'Principles',
+  'values.v1h':'Quality','values.v1p':'Delivering high-quality products and services that meet the most rigorous international standards.',
+  'values.v2h':'Innovation','values.v2p':'Continuous improvement and modern solutions driving sustainable growth in precious metals trading.',
+  'values.v3h':'Confidence','values.v3p':'Building lasting trust with our clients through transparency and unwavering commitment to their goals.',
+  'values.v4h':'Integrity','values.v4p':'Honesty and trust form the unshakable foundation of every relationship we build.',
+  'cta.title':'Ready to Invest in ','cta.titleEm':'Your Future?','cta.desc':'Start your precious metals journey today with Budget Gold. Our expert team is ready to guide you through every step of the process.','cta.btn':'Start Your Journey',
+  'trust.label':'Why Choose Us','trust.title':'The ','trust.titleEm':'Budget Gold','trust.certified':'Certified Pure',
+  'trust.t1h':'Dubai Gold Souk Location','trust.t1p':'Strategically located in the world-renowned Gold Souk — the heart of global precious metals trading.',
+  'trust.t2h':'Competitive Spot Prices','trust.t2p':'We offer precious metals at very attractive spot market prices, ensuring maximum value for your investment.',
+  'trust.t3h':'Certified Authenticity','trust.t3p':'Every product undergoes rigorous testing and comes with full certification of purity and weight.',
+  'trust.t4h':'Online Trading Platform','trust.t4p':'Our online trading facility enables valued customers to transact securely from anywhere in the world.',
+  'testimonial.quote':'Budget Gold made investing in precious metals seamless and transparent. Their expertise and competitive pricing in the Dubai Gold Souk are unmatched.',
+  'testimonial.author':'<strong>Valued Client</strong> — Dubai, UAE',
+  'contact.label':'Get In Touch','contact.title':"Let's ",'contact.titleEm':'Connect',
+  'contact.visitH':'Visit Us','contact.visitP':'Office No. 103, HIND 3<br>(DEIRA WATERFRONT PROPERTIES)<br>Gold Souk, Dubai, UAE',
+  'contact.callH':'Call Us','contact.emailH':'Email Us',
+  'contact.formTitle':'Send a Message','contact.formDesc':"We'll respond within 24 hours.",
+  'contact.fname':'First Name','contact.lname':'Last Name','contact.email':'Email','contact.phone':'Phone',
+  'contact.interest':'Interest','contact.selectInterest':'Select your interest','contact.other':'Other',
+  'contact.message':'Message','contact.send':'Send Message',
+  'footer.desc':"Your trusted partner for precious metals trading in the heart of Dubai's Gold Souk.",
+  'footer.navH':'Navigation','footer.aboutUs':'About Us','footer.ourValues':'Our Values','footer.custom':'Custom Orders','footer.location':'Gold Souk, Dubai',
+  'footer.copy':'© 2024 Budget Gold L.L.C. All Rights Reserved.'
+},
+ar:{
+  'nav.about':'من نحن','nav.products':'المنتجات','nav.services':'الخدمات','nav.values':'القيم','nav.whyus':'لماذا نحن','nav.contact':'اتصل بنا',
+  'hero.badge':'سوق الذهب في دبي — تأسست 2023','hero.title':'طريقك نحو','hero.titleEm':'الأمان المالي',
+  'hero.desc':'متخصصون في تجارة المعادن الثمينة — شراء وبيع سبائك الذهب والفضة بأسعار تنافسية من قلب دبي.',
+  'hero.cta1':'استعرض المنتجات','hero.cta2':'تواصل معنا',
+  'about.label':'من نحن','about.title':'اسم موثوق في ','about.titleEm':'المعادن الثمينة','about.company':'بادجت جولد ذ.م.م.',
+  'about.p1':'أثبتت بادجت جولد نفسها كشريك موثوق وموثوق للمستثمرين الذين يسعون للتنقل في عالم تجارة الذهب والفضة، ومقرها دبي — مركز عالمي للمعادن الثمينة.',
+  'about.p2':'نحن متخصصون في تجارة السلع، شراء وبيع سبائك الذهب والفضة بأسعار سوق فورية جذابة للغاية. تضمن منصتنا للتداول عبر الإنترنت أن يتمكن عملاؤنا الكرام من التعامل بثقة من أي مكان في العالم.',
+  'about.stat1':'معاملة','about.stat2':'مشروع منجز','about.stat3':'علامة تجارية','about.stat4':'عميل مخلص',
+  'mission.label':'هدفنا','mission.title':'مدفوعون بـ','mission.titleEm':'الرؤية',
+  'mission.missionH':'مهمتنا','mission.missionP':'أن نكون الشركة الرائدة في تجارة المعادن الثمينة، لضمان سعادة ورضا أصحاب المصلحة من خلال الممارسات الشفافة والأسعار التنافسية.',
+  'mission.visionH':'رؤيتنا','mission.visionP':'مواصلة تحقيق الجودة المستدامة والنمو لنصبح رائدًا عالميًا في تجارة الذهب، ووضع معايير جديدة للتميز في صناعة المعادن الثمينة.',
+  'products.label':'منتجاتنا','products.title':'معادن ','products.titleEm':'ثمينة فاخرة',
+  'products.desc':'منتجات ذهب وفضة مختارة بعناية ومعتمدة، متوفرة بأوزان متنوعة تناسب كل استراتيجية استثمارية.',
+  'products.gold':'سبائك الذهب','products.goldDesc':'من 1 غرام إلى 1 كيلو — ذهب 999.9',
+  'products.g1':'سبيكة ذهب 1 غرام','products.g5':'سبيكة ذهب 5 غرام','products.g10':'سبيكة ذهب 10 غرام','products.g50':'سبيكة ذهب 50 غرام','products.g100':'سبيكة ذهب 100 غرام','products.g1kg':'سبيكة ذهب 1 كيلوغرام',
+  'products.silver':'سبائك الفضة','products.silverDesc':'من 1 غرام إلى 1 كيلو — فضة 999.0',
+  'products.s1':'سبيكة فضة 1 غرام','products.s5':'سبيكة فضة 5 غرام','products.s10':'سبيكة فضة 10 غرام','products.s50':'سبيكة فضة 50 غرام','products.s100':'سبيكة فضة 100 غرام','products.s1kg':'سبيكة فضة 1 كيلوغرام',
+  'products.coins':'عملات سكّية','products.coinsDesc':'تشكيلات محلية، مقدسة، عتيقة وشعبية',
+  'products.c1':'عملات التراث المحلي','products.c2':'مجموعة العملات المقدسة','products.c3':'عملات الإصدارات العتيقة','products.c4':'عملات السبائك الشعبية','products.c5':'إصدارات محدودة','products.c6':'عملات مسكوكة مخصصة',
+  'products.inquire':'استفسر الآن',
+  'services.label':'ما نقدمه','services.title':'خدمات ','services.titleEm':'شاملة',
+  'services.storageH':'التخزين الآمن','services.storageP':'مرافق خزنة متطورة للحفاظ على استثماراتك في المعادن الثمينة.',
+  'services.consultH':'الاستشارات','services.consultP':'إرشاد خبير حول الاستثمارات واتجاهات السوق واستراتيجيات تنويع المحافظ.',
+  'services.testH':'الفحص والتكرير','services.testP':'فحص مهني والتحقق من الأصالة باستخدام طرق معتمدة.',
+  'services.tradeH':'تجارة المعادن','services.tradeP':'شراء وبيع الذهب والفضة بأسعار سوق فورية تنافسية بشفافية كاملة.',
+  'services.logistH':'الخدمات اللوجستية','services.logistP':'توصيل آمن ومؤمن للمعادن الثمينة حول العالم مع تتبع كامل.',
+  'values.label':'قيمنا الأساسية','values.title':'مبنية على ','values.titleEm':'المبادئ',
+  'values.v1h':'الجودة','values.v1p':'تقديم منتجات وخدمات عالية الجودة تلبي أصعب المعايير الدولية.',
+  'values.v2h':'الابتكار','values.v2p':'التحسين المستمر والحلول الحديثة التي تدفع النمو المستدام في تجارة المعادن الثمينة.',
+  'values.v3h':'الثقة','values.v3p':'بناء ثقة دائمة مع عملائنا من خلال الشفافية والالتزام الراسخ بأهدافهم.',
+  'values.v4h':'النزاهة','values.v4p':'الصدق والثقة يشكلان الأساس الراسخ لكل علاقة نبنيها.',
+  'cta.title':'مستعد للاستثمار في ','cta.titleEm':'مستقبلك؟','cta.desc':'ابدأ رحلتك في المعادن الثمينة اليوم مع بادجت جولد. فريقنا من الخبراء جاهز لإرشادك في كل خطوة.','cta.btn':'ابدأ رحلتك',
+  'trust.label':'لماذا نحن','trust.title':'ميزة ','trust.titleEm':'بادجت جولد','trust.certified':'نقاء معتمد',
+  'trust.t1h':'موقع سوق الذهب في دبي','trust.t1p':'موقع استراتيجي في سوق الذهب الشهير عالميًا — قلب تجارة المعادن الثمينة العالمية.',
+  'trust.t2h':'أسعار فورية تنافسية','trust.t2p':'نقدم المعادن الثمينة بأسعار سوق فورية جذابة للغاية، لضمان أقصى قيمة لاستثمارك.',
+  'trust.t3h':'أصالة معتمدة','trust.t3p':'يخضع كل منتج لاختبارات صارمة ويأتي مع شهادة كاملة للنقاء والوزن.',
+  'trust.t4h':'منصة تداول إلكترونية','trust.t4p':'تتيح منصتنا للتداول عبر الإنترنت لعملائنا الكرام التعامل بأمان من أي مكان في العالم.',
+  'testimonial.quote':'جعلت بادجت جولد الاستثمار في المعادن الثمينة سلسًا وشفافًا. خبرتهم وأسعارهم التنافسية في سوق الذهب بدبي لا مثيل لها.',
+  'testimonial.author':'<strong>عميل كريم</strong> — دبي، الإمارات',
+  'contact.label':'تواصل معنا','contact.title':'لنتواصل ','contact.titleEm':'معًا',
+  'contact.visitH':'زورونا','contact.visitP':'مكتب رقم 103، هند 3<br>(عقارات ديرة الواجهة المائية)<br>سوق الذهب، دبي، الإمارات',
+  'contact.callH':'اتصل بنا','contact.emailH':'راسلنا',
+  'contact.formTitle':'أرسل رسالة','contact.formDesc':'سنرد خلال 24 ساعة.',
+  'contact.fname':'الاسم الأول','contact.lname':'اسم العائلة','contact.email':'البريد الإلكتروني','contact.phone':'الهاتف',
+  'contact.interest':'الاهتمام','contact.selectInterest':'اختر اهتمامك','contact.other':'أخرى',
+  'contact.message':'الرسالة','contact.send':'إرسال الرسالة',
+  'footer.desc':'شريكك الموثوق لتجارة المعادن الثمينة في قلب سوق الذهب في دبي.',
+  'footer.navH':'التنقل','footer.aboutUs':'من نحن','footer.ourValues':'قيمنا','footer.custom':'طلبات مخصصة','footer.location':'سوق الذهب، دبي',
+  'footer.copy':'© 2024 بادجت جولد ذ.م.م. جميع الحقوق محفوظة.'
+},
+ru:{
+  'nav.about':'О нас','nav.products':'Продукция','nav.services':'Услуги','nav.values':'Ценности','nav.whyus':'Почему мы','nav.contact':'Контакты',
+  'hero.badge':'Золотой рынок Дубая — С 2023 года','hero.title':'Ваш путь к','hero.titleEm':'Финансовой безопасности',
+  'hero.desc':'Специализируемся на торговле драгоценными металлами — покупка и продажа золотых и серебряных слитков по конкурентным спотовым ценам из сердца Дубая.',
+  'hero.cta1':'Наша продукция','hero.cta2':'Связаться с нами',
+  'about.label':'О нас','about.title':'Надёжное имя в ','about.titleEm':'Драгоценных металлах','about.company':'Budget Gold О.О.О.',
+  'about.p1':'Budget Gold зарекомендовала себя как надёжный партнёр для инвесторов в мире торговли золотом и серебром, базируясь в Дубае — глобальном центре драгоценных металлов.',
+  'about.p2':'Мы специализируемся на торговле сырьевыми товарами, покупке и продаже физических слитков золота и серебра по очень привлекательным спотовым ценам. Наша онлайн-платформа обеспечивает нашим клиентам уверенные сделки из любой точки мира.',
+  'about.stat1':'Транзакций','about.stat2':'Реализованных проектов','about.stat3':'Обслуженных брендов','about.stat4':'Постоянных клиентов',
+  'mission.label':'Наша цель','mission.title':'Движимы ','mission.titleEm':'Видением',
+  'mission.missionH':'Наша миссия','mission.missionP':'Быть ведущей компанией в торговле драгоценными металлами, обеспечивая счастье и удовлетворение заинтересованных сторон через прозрачные практики и конкурентные цены.',
+  'mission.visionH':'Наше видение','mission.visionP':'Продолжать достигать устойчивого качества и роста, чтобы стать мировым лидером в торговле золотом, устанавливая новые стандарты совершенства в индустрии драгоценных металлов.',
+  'products.label':'Наша продукция','products.title':'Премиальные ','products.titleEm':'Драгоценные металлы',
+  'products.desc':'Тщательно отобранные и сертифицированные продукты из золота и серебра различных весов для любой инвестиционной стратегии.',
+  'products.gold':'Золотые слитки','products.goldDesc':'От 1 г до 1 кг — золото 999.9 пробы',
+  'products.g1':'Золотой слиток 1 грамм','products.g5':'Золотой слиток 5 грамм','products.g10':'Золотой слиток 10 грамм','products.g50':'Золотой слиток 50 грамм','products.g100':'Золотой слиток 100 грамм','products.g1kg':'Золотой слиток 1 килограмм',
+  'products.silver':'Серебряные слитки','products.silverDesc':'От 1 г до 1 кг — серебро 999.0 пробы',
+  'products.s1':'Серебряный слиток 1 грамм','products.s5':'Серебряный слиток 5 грамм','products.s10':'Серебряный слиток 10 грамм','products.s50':'Серебряный слиток 50 грамм','products.s100':'Серебряный слиток 100 грамм','products.s1kg':'Серебряный слиток 1 килограмм',
+  'products.coins':'Чеканные монеты','products.coinsDesc':'Местные, священные, винтажные и популярные разновидности',
+  'products.c1':'Монеты местного наследия','products.c2':'Коллекция священных монет','products.c3':'Винтажные монеты','products.c4':'Популярные инвестиционные монеты','products.c5':'Лимитированные выпуски','products.c6':'Монеты на заказ',
+  'products.inquire':'Узнать подробнее',
+  'services.label':'Наши услуги','services.title':'Комплексные ','services.titleEm':'Услуги',
+  'services.storageH':'Безопасное хранение','services.storageP':'Современные хранилища для надёжного хранения ваших инвестиций в драгоценные металлы.',
+  'services.consultH':'Консультации','services.consultP':'Экспертное руководство по инвестициям, рыночным тенденциям и стратегиям диверсификации портфеля.',
+  'services.testH':'Тестирование и очистка','services.testP':'Профессиональная проверка подлинности с использованием сертифицированных методов.',
+  'services.tradeH':'Торговля металлами','services.tradeP':'Покупка и продажа золота и серебра по конкурентным спотовым ценам с полной прозрачностью.',
+  'services.logistH':'Логистика','services.logistP':'Безопасная, застрахованная доставка драгоценных металлов по всему миру с полным отслеживанием.',
+  'values.label':'Наши ценности','values.title':'Основаны на ','values.titleEm':'Принципах',
+  'values.v1h':'Качество','values.v1p':'Предоставление высококачественных продуктов и услуг, соответствующих самым строгим международным стандартам.',
+  'values.v2h':'Инновации','values.v2p':'Постоянное совершенствование и современные решения для устойчивого роста в торговле драгоценными металлами.',
+  'values.v3h':'Доверие','values.v3p':'Построение прочного доверия с клиентами через прозрачность и непоколебимую приверженность их целям.',
+  'values.v4h':'Честность','values.v4p':'Честность и доверие формируют незыблемый фундамент каждых отношений, которые мы строим.',
+  'cta.title':'Готовы инвестировать в ','cta.titleEm':'Ваше будущее?','cta.desc':'Начните свой путь в драгоценных металлах сегодня с Budget Gold. Наша команда экспертов готова помочь вам на каждом этапе.','cta.btn':'Начать путь',
+  'trust.label':'Почему мы','trust.title':'Преимущество ','trust.titleEm':'Budget Gold','trust.certified':'Сертифицированная чистота',
+  'trust.t1h':'Расположение в Золотом рынке Дубая','trust.t1p':'Стратегическое расположение в всемирно известном Золотом рынке — сердце мировой торговли драгоценными металлами.',
+  'trust.t2h':'Конкурентные спотовые цены','trust.t2p':'Мы предлагаем драгоценные металлы по очень привлекательным спотовым ценам, обеспечивая максимальную ценность вашей инвестиции.',
+  'trust.t3h':'Сертифицированная подлинность','trust.t3p':'Каждый продукт проходит строгое тестирование и сопровождается полной сертификацией чистоты и веса.',
+  'trust.t4h':'Онлайн-платформа','trust.t4p':'Наша онлайн-платформа позволяет клиентам совершать безопасные сделки из любой точки мира.',
+  'testimonial.quote':'Budget Gold сделала инвестиции в драгоценные металлы простыми и прозрачными. Их опыт и конкурентные цены на Золотом рынке Дубая не имеют равных.',
+  'testimonial.author':'<strong>Ценный клиент</strong> — Дубай, ОАЭ',
+  'contact.label':'Свяжитесь с нами','contact.title':'Давайте ','contact.titleEm':'Свяжемся',
+  'contact.visitH':'Посетите нас','contact.visitP':'Офис № 103, HIND 3<br>(DEIRA WATERFRONT PROPERTIES)<br>Золотой рынок, Дубай, ОАЭ',
+  'contact.callH':'Позвоните нам','contact.emailH':'Напишите нам',
+  'contact.formTitle':'Отправить сообщение','contact.formDesc':'Мы ответим в течение 24 часов.',
+  'contact.fname':'Имя','contact.lname':'Фамилия','contact.email':'Эл. почта','contact.phone':'Телефон',
+  'contact.interest':'Интерес','contact.selectInterest':'Выберите интерес','contact.other':'Другое',
+  'contact.message':'Сообщение','contact.send':'Отправить',
+  'footer.desc':'Ваш надёжный партнёр по торговле драгоценными металлами в самом сердце Золотого рынка Дубая.',
+  'footer.navH':'Навигация','footer.aboutUs':'О нас','footer.ourValues':'Наши ценности','footer.custom':'На заказ','footer.location':'Золотой рынок, Дубай',
+  'footer.copy':'© 2024 Budget Gold L.L.C. Все права защищены.'
+}
+};
+
+const langOrder = ['en','ar','ru'];
+const nextLangMap = {en:'AR', ar:'RU', ru:'EN'};
+let currentLang = localStorage.getItem('bg-lang') || 'en';
+
+function applyLang(lang){
+  currentLang = lang;
+  localStorage.setItem('bg-lang', lang);
+  const dict = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(dict[key] === undefined) return;
+    const childI18n = el.querySelector('[data-i18n]');
+    if(childI18n){
+      // Element has translatable children — only update the text node before the child
+      const nodes = el.childNodes;
+      for(let i=0;i<nodes.length;i++){
+        if(nodes[i].nodeType===3 && nodes[i].textContent.trim()){
+          nodes[i].textContent = dict[key];
+          break;
+        }
+      }
+    } else {
+      el.innerHTML = dict[key];
+    }
+  });
+
+  // RTL for Arabic
+  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.documentElement.lang = lang === 'ar' ? 'ar' : lang === 'ru' ? 'ru' : 'en';
+
+  // Update button to show next language
+  document.getElementById('langCurrent').textContent = nextLangMap[lang];
+
+  // Update active state in dropdown
+  document.querySelectorAll('.lang-option').forEach(opt=>{
+    opt.classList.toggle('active', opt.dataset.lang === lang);
+  });
+}
+
+// Toggle dropdown
+const sw = document.getElementById('langSwitch');
+const btn = document.getElementById('langBtn');
+btn.addEventListener('click', function(e){
+  e.stopPropagation();
+  sw.classList.toggle('open');
+});
+
+// Option click
+document.querySelectorAll('.lang-option').forEach(opt=>{
+  opt.addEventListener('click', function(e){
+    e.stopPropagation();
+    applyLang(this.dataset.lang);
+    sw.classList.remove('open');
+  });
+});
+
+// Quick switch: clicking the button text cycles to the shown language
+btn.addEventListener('dblclick', function(e){
+  e.stopPropagation();
+  const nextIdx = (langOrder.indexOf(currentLang) + 1) % langOrder.length;
+  applyLang(langOrder[nextIdx]);
+  sw.classList.remove('open');
+});
+
+// Close dropdown on outside click
+document.addEventListener('click', function(){ sw.classList.remove('open'); });
+
+// Apply saved language on load
+if(currentLang !== 'en') applyLang(currentLang);
 })();
 </script>
 </body>
