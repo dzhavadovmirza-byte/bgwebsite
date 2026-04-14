@@ -288,8 +288,8 @@ img{max-width:100%;display:block}
 /* ══════ MARQUEE ══════ */
 .marquee-strip{position:relative;z-index:1;overflow:hidden;padding:1.2rem 0;border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);background:rgba(10,10,10,.6)}
 .marquee-track{display:flex;animation:marqueeScroll 60s linear infinite;width:max-content}
-.marquee-item{display:inline-flex;align-items:center;padding:0 2.5rem;white-space:nowrap;font-family:var(--font-body);font-size:.88rem;font-weight:400;color:var(--gray-400);letter-spacing:.02em}
-.marquee-item .dot{width:5px;height:5px;border-radius:50%;background:var(--gold-400);flex-shrink:0;margin-right:1.5rem}
+.marquee-item{display:inline;padding:0 2.5rem;white-space:nowrap;font-family:var(--font-body);font-size:.88rem;font-weight:400;color:var(--gray-400);letter-spacing:.02em}
+.marquee-item .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold-400);vertical-align:middle;margin-right:.8rem}
 .marquee-item strong{color:var(--gold-300);font-weight:600}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
@@ -688,22 +688,22 @@ img{max-width:100%;display:block}
 <!-- ═══════════ MARQUEE ═══════════ -->
 <div class="marquee-strip">
   <div class="marquee-track">
-    <div class="marquee-item"><span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong></div>
-    <div class="marquee-item"><span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily</div>
-    <div class="marquee-item"><span class="dot"></span>Central banks bought record <strong>1,037 tonnes</strong> of gold in 2023</div>
-    <div class="marquee-item"><span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm</div>
-    <div class="marquee-item"><span class="dot"></span>The UAE is the world's <strong>3rd largest</strong> gold trading hub</div>
-    <div class="marquee-item"><span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong></div>
-    <div class="marquee-item"><span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode</div>
-    <div class="marquee-item"><span class="dot"></span>India and China together consume over <strong>50%</strong> of the world's gold</div>
-    <div class="marquee-item"><span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong></div>
-    <div class="marquee-item"><span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily</div>
-    <div class="marquee-item"><span class="dot"></span>Central banks bought record <strong>1,037 tonnes</strong> of gold in 2023</div>
-    <div class="marquee-item"><span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm</div>
-    <div class="marquee-item"><span class="dot"></span>The UAE is the world's <strong>3rd largest</strong> gold trading hub</div>
-    <div class="marquee-item"><span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong></div>
-    <div class="marquee-item"><span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode</div>
-    <div class="marquee-item"><span class="dot"></span>India and China together consume over <strong>50%</strong> of the world's gold</div>
+    <span class="marquee-item" data-i18n="fact.1"><span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong></span>
+    <span class="marquee-item" data-i18n="fact.2"><span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily</span>
+    <span class="marquee-item" data-i18n="fact.3"><span class="dot"></span>Central banks bought a record <strong>1,037 tonnes</strong> of gold in 2023</span>
+    <span class="marquee-item" data-i18n="fact.4"><span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm</span>
+    <span class="marquee-item" data-i18n="fact.5"><span class="dot"></span>The UAE is the world's <strong>3rd largest</strong> gold trading hub</span>
+    <span class="marquee-item" data-i18n="fact.6"><span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong></span>
+    <span class="marquee-item" data-i18n="fact.7"><span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode</span>
+    <span class="marquee-item" data-i18n="fact.8"><span class="dot"></span>India and China together consume over <strong>50%</strong> of the world's gold</span>
+    <span class="marquee-item" data-i18n="fact.1"><span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong></span>
+    <span class="marquee-item" data-i18n="fact.2"><span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily</span>
+    <span class="marquee-item" data-i18n="fact.3"><span class="dot"></span>Central banks bought a record <strong>1,037 tonnes</strong> of gold in 2023</span>
+    <span class="marquee-item" data-i18n="fact.4"><span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm</span>
+    <span class="marquee-item" data-i18n="fact.5"><span class="dot"></span>The UAE is the world's <strong>3rd largest</strong> gold trading hub</span>
+    <span class="marquee-item" data-i18n="fact.6"><span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong></span>
+    <span class="marquee-item" data-i18n="fact.7"><span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode</span>
+    <span class="marquee-item" data-i18n="fact.8"><span class="dot"></span>India and China together consume over <strong>50%</strong> of the world's gold</span>
   </div>
 </div>
 
@@ -1319,7 +1319,15 @@ en:{
   'footer.desc':"Your trusted partner for precious metals trading in the heart of Dubai's Gold Souk.",
   'footer.navH':'Navigation','footer.aboutUs':'About Us','footer.ourValues':'Our Values','footer.custom':'Custom Orders','footer.location':'Gold Souk, Dubai',
   'footer.copy':'© 2024 Budget Gold L.L.C. All Rights Reserved.',
-  'calc.label':'Price Calculator','calc.title':'Calculate ','calc.titleEm':'Your Investment','calc.metal':'Metal','calc.weight':'Weight','calc.quantity':'Quantity','calc.estimated':'Estimated Price'
+  'calc.label':'Price Calculator','calc.title':'Calculate ','calc.titleEm':'Your Investment','calc.metal':'Metal','calc.weight':'Weight','calc.quantity':'Quantity','calc.estimated':'Estimated Price',
+  'fact.1':'<span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong>',
+  'fact.2':'<span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily',
+  'fact.3':'<span class="dot"></span>Central banks bought a record <strong>1,037 tonnes</strong> of gold in 2023',
+  'fact.4':'<span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm',
+  'fact.5':'<span class="dot"></span>The UAE is the world\'s <strong>3rd largest</strong> gold trading hub',
+  'fact.6':'<span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong>',
+  'fact.7':'<span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode',
+  'fact.8':'<span class="dot"></span>India and China together consume over <strong>50%</strong> of the world\'s gold'
 },
 ar:{
   'nav.about':'من نحن','nav.products':'المنتجات','nav.services':'الخدمات','nav.values':'القيم','nav.whyus':'لماذا نحن','nav.contact':'اتصل بنا',
@@ -1371,7 +1379,15 @@ ar:{
   'footer.desc':'شريكك الموثوق لتجارة المعادن الثمينة في قلب سوق الذهب في دبي.',
   'footer.navH':'التنقل','footer.aboutUs':'من نحن','footer.ourValues':'قيمنا','footer.custom':'طلبات مخصصة','footer.location':'سوق الذهب، دبي',
   'footer.copy':'© 2024 بادجت جولد ذ.م.م. جميع الحقوق محفوظة.',
-  'calc.label':'حاسبة الأسعار','calc.title':'احسب ','calc.titleEm':'استثمارك','calc.metal':'المعدن','calc.weight':'الوزن','calc.quantity':'الكمية','calc.estimated':'السعر التقديري'
+  'calc.label':'حاسبة الأسعار','calc.title':'احسب ','calc.titleEm':'استثمارك','calc.metal':'المعدن','calc.weight':'الوزن','calc.quantity':'الكمية','calc.estimated':'السعر التقديري',
+  'fact.1':'<span class="dot"></span>الذهب مخزن للقيمة منذ أكثر من <strong>5,000 عام</strong>',
+  'fact.2':'<span class="dot"></span>يتداول سوق الذهب في دبي أكثر من <strong>10 أطنان</strong> من الذهب يومياً',
+  'fact.3':'<span class="dot"></span>اشترت البنوك المركزية رقماً قياسياً بلغ <strong>1,037 طن</strong> من الذهب في 2023',
+  'fact.4':'<span class="dot"></span>الذهب أكثف من الماء بـ <strong>19.3 مرة</strong> — سبيكة 1 كغ تناسب كف يدك',
+  'fact.5':'<span class="dot"></span>الإمارات هي <strong>ثالث أكبر</strong> مركز لتجارة الذهب في العالم',
+  'fact.6':'<span class="dot"></span>كل الذهب المستخرج سيملأ فقط <strong>3.5 حمامات أولمبية</strong>',
+  'fact.7':'<span class="dot"></span>الذهب <strong>غير قابل للتلف</strong> — لا يصدأ ولا يتآكل ولا يفقد بريقه',
+  'fact.8':'<span class="dot"></span>الهند والصين معاً تستهلكان أكثر من <strong>50%</strong> من ذهب العالم'
 },
 ru:{
   'nav.about':'О нас','nav.products':'Продукция','nav.services':'Услуги','nav.values':'Ценности','nav.whyus':'Почему мы','nav.contact':'Контакты',
@@ -1423,7 +1439,15 @@ ru:{
   'footer.desc':'Ваш надёжный партнёр по торговле драгоценными металлами в самом сердце Золотого рынка Дубая.',
   'footer.navH':'Навигация','footer.aboutUs':'О нас','footer.ourValues':'Наши ценности','footer.custom':'На заказ','footer.location':'Золотой рынок, Дубай',
   'footer.copy':'© 2024 Budget Gold L.L.C. Все права защищены.',
-  'calc.label':'Калькулятор цен','calc.title':'Рассчитайте ','calc.titleEm':'Вашу инвестицию','calc.metal':'Металл','calc.weight':'Вес','calc.quantity':'Количество','calc.estimated':'Расчётная стоимость'
+  'calc.label':'Калькулятор цен','calc.title':'Рассчитайте ','calc.titleEm':'Вашу инвестицию','calc.metal':'Металл','calc.weight':'Вес','calc.quantity':'Количество','calc.estimated':'Расчётная стоимость',
+  'fact.1':'<span class="dot"></span>Золото является средством сбережения уже более <strong>5 000 лет</strong>',
+  'fact.2':'<span class="dot"></span>На Золотом рынке Дубая ежедневно торгуется более <strong>10 тонн</strong> золота',
+  'fact.3':'<span class="dot"></span>Центральные банки купили рекордные <strong>1 037 тонн</strong> золота в 2023 году',
+  'fact.4':'<span class="dot"></span>Золото в <strong>19,3 раза</strong> плотнее воды — слиток 1 кг помещается на ладони',
+  'fact.5':'<span class="dot"></span>ОАЭ — <strong>3-й крупнейший</strong> центр торговли золотом в мире',
+  'fact.6':'<span class="dot"></span>Всё когда-либо добытое золото заполнило бы лишь <strong>3,5 олимпийских бассейна</strong>',
+  'fact.7':'<span class="dot"></span>Золото практически <strong>неразрушимо</strong> — оно не ржавеет, не тускнеет и не подвергается коррозии',
+  'fact.8':'<span class="dot"></span>Индия и Китай вместе потребляют более <strong>50%</strong> мирового золота'
 }
 };
 
