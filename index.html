@@ -336,11 +336,8 @@ img{max-width:100%;display:block}
 .products-header .section-label::before{display:none}
 .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .product-card{position:relative;perspective:1000px;height:520px;cursor:pointer}
-.product-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d}
-.product-card-inner.spinning{animation:cardSpin .8s ease-in-out}
-.product-card-inner.flipped{transform:rotateY(180deg);transition:none}
-@keyframes cardSpin{0%{transform:rotateY(0deg)}100%{transform:rotateY(360deg)}}
-@keyframes cardSpinFlipped{0%{transform:rotateY(180deg)}100%{transform:rotateY(540deg)}}
+.product-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .6s cubic-bezier(.4,0,.2,1)}
+.product-card-inner.flipped{transform:rotateY(180deg)}
 .product-front,.product-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
 .product-front{background:linear-gradient(160deg,var(--black-600),var(--black-700));border:1px solid rgba(212,175,55,.08);padding:2.5rem;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;transition:border-color .4s}
 .product-front::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 50% 30%,rgba(212,175,55,.04),transparent 60%);pointer-events:none}
@@ -903,7 +900,14 @@ img{max-width:100%;display:block}
             <option value="2000">2 kg</option>
             <option value="5000">5 kg</option>
             <option value="10000">10 kg</option>
+            <option value="custom">✎ Custom</option>
           </select>
+        </div>
+      </div>
+      <div class="calc-row" id="calcCustomRow" style="display:none">
+        <div class="calc-group">
+          <label data-i18n="calc.customWeight">Custom Weight (grams)</label>
+          <input type="number" id="calcCustomWeight" min="0.1" step="0.1" placeholder="e.g. 375" inputmode="decimal">
         </div>
       </div>
       <div class="calc-result">
@@ -1310,40 +1314,12 @@ document.querySelector('.hero-radial').style.transform=`translate(calc(-50% + ${
   });
 })();
 
-/* Product card spin on click/touch */
+/* Product card flip on click/touch */
 (function(){
   document.querySelectorAll('.product-card').forEach(card=>{
     const inner = card.querySelector('.product-card-inner');
     if(!inner) return;
-    let isFlipped = false;
-    let spinning = false;
-
-    function spin(){
-      if(spinning) return;
-      spinning = true;
-      // Use correct keyframes based on current state
-      inner.style.animation = 'none';
-      inner.offsetHeight; // reflow
-      if(isFlipped){
-        inner.style.animation = 'cardSpinFlipped .8s ease-in-out forwards';
-      } else {
-        inner.style.animation = 'cardSpin .8s ease-in-out forwards';
-      }
-    }
-
-    inner.addEventListener('animationend', function(){
-      spinning = false;
-      inner.style.animation = 'none';
-      // Toggle flipped state after full 360 spin
-      isFlipped = !isFlipped;
-      if(isFlipped){
-        inner.classList.add('flipped');
-      } else {
-        inner.classList.remove('flipped');
-      }
-    });
-
-    card.addEventListener('click', spin);
+    card.addEventListener('click', ()=> inner.classList.toggle('flipped'));
   });
 })();
 
@@ -1403,7 +1379,7 @@ en:{
   'footer.desc':"Your trusted partner for precious metals trading in the heart of Dubai's Gold Souk.",
   'footer.navH':'Navigation','footer.aboutUs':'About Us','footer.ourValues':'Our Values','footer.custom':'Custom Orders','footer.location':'Gold Souk, Dubai',
   'footer.copy':'© 2024 Budget Gold L.L.C. All Rights Reserved.',
-  'calc.label':'Price Calculator','calc.title':'Calculate ','calc.titleEm':'Your Investment','calc.metal':'Metal','calc.weight':'Weight','calc.quantity':'Quantity','calc.estimated':'Estimated Price',
+  'calc.label':'Price Calculator','calc.title':'Calculate ','calc.titleEm':'Your Investment','calc.metal':'Metal','calc.weight':'Weight','calc.quantity':'Quantity','calc.estimated':'Estimated Price','calc.customWeight':'Custom Weight (grams)',
   'fact.1':'<span class="dot"></span>Gold has been valued by humans for over <strong>5,000 years</strong>',
   'fact.2':'<span class="dot"></span>It is one of the <strong>rarest</strong> naturally occurring elements on Earth',
   'fact.3':'<span class="dot"></span>All the gold ever mined could fit into a cube of about <strong>22 meters</strong> per side',
@@ -1485,7 +1461,7 @@ ar:{
   'footer.desc':'شريكك الموثوق لتجارة المعادن الثمينة في قلب سوق الذهب في دبي.',
   'footer.navH':'التنقل','footer.aboutUs':'من نحن','footer.ourValues':'قيمنا','footer.custom':'طلبات مخصصة','footer.location':'سوق الذهب، دبي',
   'footer.copy':'© 2024 بادجت جولد ذ.م.م. جميع الحقوق محفوظة.',
-  'calc.label':'حاسبة الأسعار','calc.title':'احسب ','calc.titleEm':'استثمارك','calc.metal':'المعدن','calc.weight':'الوزن','calc.quantity':'الكمية','calc.estimated':'السعر التقديري',
+  'calc.label':'حاسبة الأسعار','calc.title':'احسب ','calc.titleEm':'استثمارك','calc.metal':'المعدن','calc.weight':'الوزن','calc.quantity':'الكمية','calc.estimated':'السعر التقديري','calc.customWeight':'الوزن المخصص (غرام)',
   'fact.1':'<span class="dot"></span>يُقدَّر الذهب من قبل البشر منذ أكثر من <strong>5,000 عام</strong>',
   'fact.2':'<span class="dot"></span>هو أحد <strong>أندر</strong> العناصر الطبيعية على وجه الأرض',
   'fact.3':'<span class="dot"></span>كل الذهب المستخرج يمكن أن يملأ مكعباً بطول <strong>22 متراً</strong> لكل ضلع',
@@ -1567,7 +1543,7 @@ ru:{
   'footer.desc':'Ваш надёжный партнёр по торговле драгоценными металлами в самом сердце Золотого рынка Дубая.',
   'footer.navH':'Навигация','footer.aboutUs':'О нас','footer.ourValues':'Наши ценности','footer.custom':'На заказ','footer.location':'Золотой рынок, Дубай',
   'footer.copy':'© 2024 Budget Gold L.L.C. Все права защищены.',
-  'calc.label':'Калькулятор цен','calc.title':'Рассчитайте ','calc.titleEm':'Вашу инвестицию','calc.metal':'Металл','calc.weight':'Вес','calc.quantity':'Количество','calc.estimated':'Расчётная стоимость',
+  'calc.label':'Калькулятор цен','calc.title':'Рассчитайте ','calc.titleEm':'Вашу инвестицию','calc.metal':'Металл','calc.weight':'Вес','calc.quantity':'Количество','calc.estimated':'Расчётная стоимость','calc.customWeight':'Произвольный вес (грамм)',
   'fact.1':'<span class="dot"></span>Золото ценится людьми уже более <strong>5 000 лет</strong>',
   'fact.2':'<span class="dot"></span>Это один из <strong>редчайших</strong> природных элементов на Земле',
   'fact.3':'<span class="dot"></span>Всё добытое золото поместилось бы в куб со стороной около <strong>22 метров</strong>',
@@ -1678,6 +1654,8 @@ if(currentLang !== 'en') applyLang(currentLang);
 (function(){
   const metal = document.getElementById('calcMetal');
   const weight = document.getElementById('calcWeight');
+  const customRow = document.getElementById('calcCustomRow');
+  const customInput = document.getElementById('calcCustomWeight');
   const totalEl = document.getElementById('calcTotal');
   const usdEl = document.getElementById('calcUSD');
   const aedEl = document.getElementById('calcAED');
@@ -1686,12 +1664,29 @@ if(currentLang !== 'en') applyLang(currentLang);
 
   function fmt(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
 
+  // Show/hide custom weight input
+  weight.addEventListener('change', function(){
+    if(weight.value === 'custom'){
+      customRow.style.display = '';
+      customInput.focus();
+    } else {
+      customRow.style.display = 'none';
+    }
+    update();
+  });
+
   function update(){
     const p = window._metalPrices || {};
     const ozPrice = metal.value === 'gold' ? p.gold : p.silver;
     if(!ozPrice) { totalEl.textContent = '—'; usdEl.textContent = '—'; aedEl.textContent = '—'; spotEl.textContent = ''; return; }
     const gramPrice = ozPrice / (p.ozToGram || 31.1035);
-    const w = parseFloat(weight.value) || 10;
+    let w;
+    if(weight.value === 'custom'){
+      w = parseFloat(customInput.value);
+      if(!w || w <= 0){ totalEl.textContent = '—'; usdEl.textContent = '—'; aedEl.textContent = '—'; spotEl.textContent = ''; return; }
+    } else {
+      w = parseFloat(weight.value) || 10;
+    }
     const totalUSD = gramPrice * w;
     const totalAED = totalUSD * (p.aedRate || 3.6725);
     totalEl.textContent = '$' + fmt(totalUSD);
@@ -1702,9 +1697,8 @@ if(currentLang !== 'en') applyLang(currentLang);
   }
 
   metal.addEventListener('change', update);
-  weight.addEventListener('change', update);
+  customInput.addEventListener('input', update);
   window._updateCalc = update;
-  // Initial calc after prices load
   setTimeout(update, 3000);
 })();
 </script>
