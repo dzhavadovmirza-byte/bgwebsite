@@ -36,11 +36,10 @@ ul{list-style:none}
 img{max-width:100%;display:block}
 
 /* ══════ CUSTOM CURSOR ══════ */
-.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;border-radius:50%;transition:opacity .3s}
-.cursor-dot{width:6px;height:6px;background:var(--gold-300);transform:translate(-50%,-50%)}
-.cursor-ring{width:36px;height:36px;border:1px solid rgba(212,175,55,.4);transform:translate(-50%,-50%);transition:width .2s,height .2s,border-color .2s}
-.cursor-ring.hover{width:56px;height:56px;border-color:rgba(212,175,55,.8)}
-@media(max-width:900px){.cursor-dot,.cursor-ring{display:none}}
+.cursor-svg{position:fixed;top:0;left:0;pointer-events:none;z-index:99999;width:28px;height:28px;transition:transform .15s ease}
+.cursor-svg.clicking{transform:scale(.85)}
+@media(pointer:coarse),(max-width:900px){.cursor-svg{display:none}body{cursor:auto!important}a,button,.product-card,.service-card,.trust-feature,.value-card,select{cursor:auto!important}}
+@media(pointer:fine) and (min-width:901px){body,body *{cursor:none!important}}
 
 /* ══════ UTILITIES ══════ */
 .gold-text{background:var(--gold-gradient-text);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
@@ -587,8 +586,9 @@ img{max-width:100%;display:block}
 <div class="noise-overlay"></div>
 
 <!-- Custom cursor -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<svg class="cursor-svg" id="cursorSvg" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M4 2L4 22L9.5 16.5L14.5 25L17.5 23.5L12.5 14.5L20 13L4 2Z" fill="#D4AF37" stroke="#1a1a1a" stroke-width="1.2" stroke-linejoin="round"/>
+</svg>
 
 <!-- Particles -->
 <canvas id="particles-canvas"></canvas>
@@ -1119,13 +1119,18 @@ requestAnimationFrame(draw)}
 addEventListener('resize',resize);init();draw()})();
 
 /* Custom cursor */
-(function(){const dot=document.getElementById('cursorDot'),ring=document.getElementById('cursorRing');
-if(!dot||!ring)return;let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
-function lerp(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(lerp)}lerp();
-document.querySelectorAll('a,button,.product-card,.service-card,.trust-feature,.value-card').forEach(el=>{
-el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
-el.addEventListener('mouseleave',()=>ring.classList.remove('hover'))})})();
+(function(){
+  const svg = document.getElementById('cursorSvg');
+  if(!svg || !window.matchMedia('(pointer:fine)').matches) return;
+  let mx = 0, my = 0;
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    svg.style.left = mx + 'px';
+    svg.style.top = my + 'px';
+  });
+  document.addEventListener('mousedown', () => svg.classList.add('clicking'));
+  document.addEventListener('mouseup', () => svg.classList.remove('clicking'));
+})();
 
 /* Nav */
 const nav=document.getElementById('nav');
