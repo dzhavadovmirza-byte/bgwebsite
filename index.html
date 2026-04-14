@@ -706,10 +706,10 @@ img{max-width:100%;display:block}
         <p class="reveal reveal-delay-3" data-i18n="about.p2">We are specialized in commodities trading, buying and selling physical gold and silver bars at very attractive spot market prices. Our online gold &amp; silver trading facility ensures our valued customers can transact with confidence from anywhere in the world.</p>
         <div class="gold-divider reveal reveal-delay-3"></div>
         <div class="about-stats reveal reveal-delay-4">
-          <div class="stat-item"><h3><span class="counter" data-target="3200">0</span>+</h3><p data-i18n="about.stat1">Transactions</p></div>
-          <div class="stat-item"><h3><span class="counter" data-target="280">0</span>+</h3><p data-i18n="about.stat2">Projects Realized</p></div>
-          <div class="stat-item"><h3><span class="counter" data-target="160">0</span>+</h3><p data-i18n="about.stat3">Brands Served</p></div>
-          <div class="stat-item"><h3><span class="counter" data-target="40">0</span>+</h3><p data-i18n="about.stat4">Loyal Clients</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="6400">0</span>+</h3><p data-i18n="about.stat1">Transactions</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="560">0</span>+</h3><p data-i18n="about.stat2">Projects Realized</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="320">0</span>+</h3><p data-i18n="about.stat3">Brands Served</p></div>
+          <div class="stat-item"><h3><span class="counter" data-target="80">0</span>+</h3><p data-i18n="about.stat4">Loyal Clients</p></div>
         </div>
       </div>
     </div>
@@ -1024,7 +1024,7 @@ const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
 /* Counters */
-const cobs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){const el=x.target,t=+el.dataset.target,d=2000,s=performance.now();
+const cobs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){const el=x.target,t=+el.dataset.target,d=2600,s=performance.now();
 function u(n){const p=Math.min((n-s)/d,1);el.textContent=Math.floor((1-Math.pow(1-p,3))*t).toLocaleString();if(p<1)requestAnimationFrame(u)}
 requestAnimationFrame(u);cobs.unobserve(el)}}),{threshold:.5});
 document.querySelectorAll('.counter').forEach(el=>cobs.observe(el));
