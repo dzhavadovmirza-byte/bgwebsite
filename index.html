@@ -286,12 +286,14 @@ img{max-width:100%;display:block}
 @media(max-width:500px){.hero-ticker{display:none}}
 
 /* ══════ MARQUEE ══════ */
-.marquee-strip{position:relative;z-index:1;overflow:hidden;padding:1.2rem 0;border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);background:rgba(10,10,10,.6)}
-.marquee-track{display:flex;animation:marqueeScroll 60s linear infinite;width:max-content}
+.marquee-strip{position:relative;z-index:1;overflow:hidden;padding:1.2rem 0;border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);background:rgba(10,10,10,.6);direction:ltr}
+.marquee-track{display:flex;animation:marqueeScroll 180s linear infinite;width:max-content}
+[dir="rtl"] .marquee-track{animation-name:marqueeScrollRTL}
 .marquee-item{display:inline;padding:0 2.5rem;white-space:nowrap;font-family:var(--font-body);font-size:.88rem;font-weight:400;color:var(--gray-400);letter-spacing:.02em}
 .marquee-item .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--gold-400);vertical-align:middle;margin-right:.8rem}
 .marquee-item strong{color:var(--gold-300);font-weight:600}
 @keyframes marqueeScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes marqueeScrollRTL{0%{transform:translateX(0)}100%{transform:translateX(50%)}}
 
 /* ══════ ABOUT ══════ */
 .about{position:relative;z-index:1;padding:8rem 0;background:linear-gradient(180deg,var(--black-900),var(--black-800))}
@@ -688,22 +690,66 @@ img{max-width:100%;display:block}
 <!-- ═══════════ MARQUEE ═══════════ -->
 <div class="marquee-strip">
   <div class="marquee-track">
-    <span class="marquee-item" data-i18n="fact.1"><span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong></span>
-    <span class="marquee-item" data-i18n="fact.2"><span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily</span>
-    <span class="marquee-item" data-i18n="fact.3"><span class="dot"></span>Central banks bought a record <strong>1,037 tonnes</strong> of gold in 2023</span>
-    <span class="marquee-item" data-i18n="fact.4"><span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm</span>
-    <span class="marquee-item" data-i18n="fact.5"><span class="dot"></span>The UAE is the world's <strong>3rd largest</strong> gold trading hub</span>
-    <span class="marquee-item" data-i18n="fact.6"><span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong></span>
-    <span class="marquee-item" data-i18n="fact.7"><span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode</span>
-    <span class="marquee-item" data-i18n="fact.8"><span class="dot"></span>India and China together consume over <strong>50%</strong> of the world's gold</span>
-    <span class="marquee-item" data-i18n="fact.1"><span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong></span>
-    <span class="marquee-item" data-i18n="fact.2"><span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily</span>
-    <span class="marquee-item" data-i18n="fact.3"><span class="dot"></span>Central banks bought a record <strong>1,037 tonnes</strong> of gold in 2023</span>
-    <span class="marquee-item" data-i18n="fact.4"><span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm</span>
-    <span class="marquee-item" data-i18n="fact.5"><span class="dot"></span>The UAE is the world's <strong>3rd largest</strong> gold trading hub</span>
-    <span class="marquee-item" data-i18n="fact.6"><span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong></span>
-    <span class="marquee-item" data-i18n="fact.7"><span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode</span>
-    <span class="marquee-item" data-i18n="fact.8"><span class="dot"></span>India and China together consume over <strong>50%</strong> of the world's gold</span>
+    <span class="marquee-item" data-i18n="fact.1"><span class="dot"></span>Gold has been valued by humans for over <strong>5,000 years</strong></span>
+    <span class="marquee-item" data-i18n="fact.2"><span class="dot"></span>It is one of the <strong>rarest</strong> naturally occurring elements on Earth</span>
+    <span class="marquee-item" data-i18n="fact.3"><span class="dot"></span>All the gold ever mined could fit into a cube of about <strong>22 meters</strong> per side</span>
+    <span class="marquee-item" data-i18n="fact.4"><span class="dot"></span>Gold is <strong>indestructible</strong> — it doesn't rust, tarnish, or corrode</span>
+    <span class="marquee-item" data-i18n="fact.5"><span class="dot"></span>Around <strong>50%</strong> of global gold demand comes from jewelry</span>
+    <span class="marquee-item" data-i18n="fact.6"><span class="dot"></span>About <strong>25%</strong> is used for investment — bars, coins, ETFs</span>
+    <span class="marquee-item" data-i18n="fact.7"><span class="dot"></span>Central banks hold over <strong>35,000 tons</strong> of gold reserves worldwide</span>
+    <span class="marquee-item" data-i18n="fact.8"><span class="dot"></span>Gold is considered a <strong>safe-haven</strong> asset during economic uncertainty</span>
+    <span class="marquee-item" data-i18n="fact.9"><span class="dot"></span>It maintains value during <strong>inflation</strong> and currency devaluation</span>
+    <span class="marquee-item" data-i18n="fact.10"><span class="dot"></span>Gold is priced globally in US dollars — <strong>XAU/USD</strong></span>
+    <span class="marquee-item" data-i18n="fact.11"><span class="dot"></span>Pure gold is measured as <strong>24 karat</strong> (999.9 fine gold)</span>
+    <span class="marquee-item" data-i18n="fact.12"><span class="dot"></span>Gold bars are also called <strong>bullion</strong></span>
+    <span class="marquee-item" data-i18n="fact.13"><span class="dot"></span>The most common investment bar sizes range from <strong>1 g to 1 kg</strong></span>
+    <span class="marquee-item" data-i18n="fact.14"><span class="dot"></span>Large institutional bars weigh about <strong>400 troy ounces</strong> (~12.4 kg)</span>
+    <span class="marquee-item" data-i18n="fact.15"><span class="dot"></span>Each bar usually has a unique <strong>serial number</strong> for tracking</span>
+    <span class="marquee-item" data-i18n="fact.16"><span class="dot"></span>High-quality bars come from <strong>LBMA-approved</strong> refineries</span>
+    <span class="marquee-item" data-i18n="fact.17"><span class="dot"></span>Gold is extremely dense — nearly <strong>twice as heavy</strong> as lead</span>
+    <span class="marquee-item" data-i18n="fact.18"><span class="dot"></span>It is the most <strong>malleable</strong> metal — 1 g can be stretched into a 2 km wire</span>
+    <span class="marquee-item" data-i18n="fact.19"><span class="dot"></span>Gold is also highly <strong>ductile</strong> and easy to shape</span>
+    <span class="marquee-item" data-i18n="fact.20"><span class="dot"></span>It reflects <strong>infrared radiation</strong>, making it useful in space technology</span>
+    <span class="marquee-item" data-i18n="fact.21"><span class="dot"></span>Gold is used in <strong>electronics</strong> due to its conductivity and reliability</span>
+    <span class="marquee-item" data-i18n="fact.22"><span class="dot"></span>It is also used in <strong>medicine</strong> and dentistry</span>
+    <span class="marquee-item" data-i18n="fact.23"><span class="dot"></span>About <strong>10%</strong> of global gold demand comes from industrial uses</span>
+    <span class="marquee-item" data-i18n="fact.24"><span class="dot"></span>Gold has been used as <strong>money</strong> and currency backing for centuries</span>
+    <span class="marquee-item" data-i18n="fact.25"><span class="dot"></span>Many investors buy gold to <strong>diversify</strong> their portfolios</span>
+    <span class="marquee-item" data-i18n="fact.26"><span class="dot"></span>Physical gold carries <strong>no counterparty risk</strong> unlike stocks or bonds</span>
+    <span class="marquee-item" data-i18n="fact.27"><span class="dot"></span>Gold mining occurs on every continent except <strong>Antarctica</strong></span>
+    <span class="marquee-item" data-i18n="fact.28"><span class="dot"></span>The largest gold producers include <strong>China, Australia, and Russia</strong></span>
+    <span class="marquee-item" data-i18n="fact.29"><span class="dot"></span>Dubai is one of the world's leading hubs for <strong>physical gold trading</strong></span>
+    <span class="marquee-item" data-i18n="fact.30"><span class="dot"></span>Gold is universally recognized as a symbol of <strong>wealth, power, and security</strong></span>
+    <span class="marquee-item" data-i18n="fact.1"><span class="dot"></span>Gold has been valued by humans for over <strong>5,000 years</strong></span>
+    <span class="marquee-item" data-i18n="fact.2"><span class="dot"></span>It is one of the <strong>rarest</strong> naturally occurring elements on Earth</span>
+    <span class="marquee-item" data-i18n="fact.3"><span class="dot"></span>All the gold ever mined could fit into a cube of about <strong>22 meters</strong> per side</span>
+    <span class="marquee-item" data-i18n="fact.4"><span class="dot"></span>Gold is <strong>indestructible</strong> — it doesn't rust, tarnish, or corrode</span>
+    <span class="marquee-item" data-i18n="fact.5"><span class="dot"></span>Around <strong>50%</strong> of global gold demand comes from jewelry</span>
+    <span class="marquee-item" data-i18n="fact.6"><span class="dot"></span>About <strong>25%</strong> is used for investment — bars, coins, ETFs</span>
+    <span class="marquee-item" data-i18n="fact.7"><span class="dot"></span>Central banks hold over <strong>35,000 tons</strong> of gold reserves worldwide</span>
+    <span class="marquee-item" data-i18n="fact.8"><span class="dot"></span>Gold is considered a <strong>safe-haven</strong> asset during economic uncertainty</span>
+    <span class="marquee-item" data-i18n="fact.9"><span class="dot"></span>It maintains value during <strong>inflation</strong> and currency devaluation</span>
+    <span class="marquee-item" data-i18n="fact.10"><span class="dot"></span>Gold is priced globally in US dollars — <strong>XAU/USD</strong></span>
+    <span class="marquee-item" data-i18n="fact.11"><span class="dot"></span>Pure gold is measured as <strong>24 karat</strong> (999.9 fine gold)</span>
+    <span class="marquee-item" data-i18n="fact.12"><span class="dot"></span>Gold bars are also called <strong>bullion</strong></span>
+    <span class="marquee-item" data-i18n="fact.13"><span class="dot"></span>The most common investment bar sizes range from <strong>1 g to 1 kg</strong></span>
+    <span class="marquee-item" data-i18n="fact.14"><span class="dot"></span>Large institutional bars weigh about <strong>400 troy ounces</strong> (~12.4 kg)</span>
+    <span class="marquee-item" data-i18n="fact.15"><span class="dot"></span>Each bar usually has a unique <strong>serial number</strong> for tracking</span>
+    <span class="marquee-item" data-i18n="fact.16"><span class="dot"></span>High-quality bars come from <strong>LBMA-approved</strong> refineries</span>
+    <span class="marquee-item" data-i18n="fact.17"><span class="dot"></span>Gold is extremely dense — nearly <strong>twice as heavy</strong> as lead</span>
+    <span class="marquee-item" data-i18n="fact.18"><span class="dot"></span>It is the most <strong>malleable</strong> metal — 1 g can be stretched into a 2 km wire</span>
+    <span class="marquee-item" data-i18n="fact.19"><span class="dot"></span>Gold is also highly <strong>ductile</strong> and easy to shape</span>
+    <span class="marquee-item" data-i18n="fact.20"><span class="dot"></span>It reflects <strong>infrared radiation</strong>, making it useful in space technology</span>
+    <span class="marquee-item" data-i18n="fact.21"><span class="dot"></span>Gold is used in <strong>electronics</strong> due to its conductivity and reliability</span>
+    <span class="marquee-item" data-i18n="fact.22"><span class="dot"></span>It is also used in <strong>medicine</strong> and dentistry</span>
+    <span class="marquee-item" data-i18n="fact.23"><span class="dot"></span>About <strong>10%</strong> of global gold demand comes from industrial uses</span>
+    <span class="marquee-item" data-i18n="fact.24"><span class="dot"></span>Gold has been used as <strong>money</strong> and currency backing for centuries</span>
+    <span class="marquee-item" data-i18n="fact.25"><span class="dot"></span>Many investors buy gold to <strong>diversify</strong> their portfolios</span>
+    <span class="marquee-item" data-i18n="fact.26"><span class="dot"></span>Physical gold carries <strong>no counterparty risk</strong> unlike stocks or bonds</span>
+    <span class="marquee-item" data-i18n="fact.27"><span class="dot"></span>Gold mining occurs on every continent except <strong>Antarctica</strong></span>
+    <span class="marquee-item" data-i18n="fact.28"><span class="dot"></span>The largest gold producers include <strong>China, Australia, and Russia</strong></span>
+    <span class="marquee-item" data-i18n="fact.29"><span class="dot"></span>Dubai is one of the world's leading hubs for <strong>physical gold trading</strong></span>
+    <span class="marquee-item" data-i18n="fact.30"><span class="dot"></span>Gold is universally recognized as a symbol of <strong>wealth, power, and security</strong></span>
   </div>
 </div>
 
@@ -1320,14 +1366,36 @@ en:{
   'footer.navH':'Navigation','footer.aboutUs':'About Us','footer.ourValues':'Our Values','footer.custom':'Custom Orders','footer.location':'Gold Souk, Dubai',
   'footer.copy':'© 2024 Budget Gold L.L.C. All Rights Reserved.',
   'calc.label':'Price Calculator','calc.title':'Calculate ','calc.titleEm':'Your Investment','calc.metal':'Metal','calc.weight':'Weight','calc.quantity':'Quantity','calc.estimated':'Estimated Price',
-  'fact.1':'<span class="dot"></span>Gold has been a store of value for over <strong>5,000 years</strong>',
-  'fact.2':'<span class="dot"></span>Dubai Gold Souk trades over <strong>10 tonnes</strong> of gold daily',
-  'fact.3':'<span class="dot"></span>Central banks bought a record <strong>1,037 tonnes</strong> of gold in 2023',
-  'fact.4':'<span class="dot"></span>Gold is <strong>19.3×</strong> denser than water — a 1kg bar fits in your palm',
-  'fact.5':'<span class="dot"></span>The UAE is the world\'s <strong>3rd largest</strong> gold trading hub',
-  'fact.6':'<span class="dot"></span>All gold ever mined would fill just <strong>3.5 Olympic pools</strong>',
-  'fact.7':'<span class="dot"></span>Gold is virtually <strong>indestructible</strong> — it does not rust, tarnish, or corrode',
-  'fact.8':'<span class="dot"></span>India and China together consume over <strong>50%</strong> of the world\'s gold'
+  'fact.1':'<span class="dot"></span>Gold has been valued by humans for over <strong>5,000 years</strong>',
+  'fact.2':'<span class="dot"></span>It is one of the <strong>rarest</strong> naturally occurring elements on Earth',
+  'fact.3':'<span class="dot"></span>All the gold ever mined could fit into a cube of about <strong>22 meters</strong> per side',
+  'fact.4':'<span class="dot"></span>Gold is <strong>indestructible</strong> — it doesn\'t rust, tarnish, or corrode',
+  'fact.5':'<span class="dot"></span>Around <strong>50%</strong> of global gold demand comes from jewelry',
+  'fact.6':'<span class="dot"></span>About <strong>25%</strong> is used for investment — bars, coins, ETFs',
+  'fact.7':'<span class="dot"></span>Central banks hold over <strong>35,000 tons</strong> of gold reserves worldwide',
+  'fact.8':'<span class="dot"></span>Gold is considered a <strong>safe-haven</strong> asset during economic uncertainty',
+  'fact.9':'<span class="dot"></span>It maintains value during <strong>inflation</strong> and currency devaluation',
+  'fact.10':'<span class="dot"></span>Gold is priced globally in US dollars — <strong>XAU/USD</strong>',
+  'fact.11':'<span class="dot"></span>Pure gold is measured as <strong>24 karat</strong> (999.9 fine gold)',
+  'fact.12':'<span class="dot"></span>Gold bars are also called <strong>bullion</strong>',
+  'fact.13':'<span class="dot"></span>The most common investment bar sizes range from <strong>1 g to 1 kg</strong>',
+  'fact.14':'<span class="dot"></span>Large institutional bars weigh about <strong>400 troy ounces</strong> (~12.4 kg)',
+  'fact.15':'<span class="dot"></span>Each bar usually has a unique <strong>serial number</strong> for tracking',
+  'fact.16':'<span class="dot"></span>High-quality bars come from <strong>LBMA-approved</strong> refineries',
+  'fact.17':'<span class="dot"></span>Gold is extremely dense — nearly <strong>twice as heavy</strong> as lead',
+  'fact.18':'<span class="dot"></span>It is the most <strong>malleable</strong> metal — 1 g can be stretched into a 2 km wire',
+  'fact.19':'<span class="dot"></span>Gold is also highly <strong>ductile</strong> and easy to shape',
+  'fact.20':'<span class="dot"></span>It reflects <strong>infrared radiation</strong>, making it useful in space technology',
+  'fact.21':'<span class="dot"></span>Gold is used in <strong>electronics</strong> due to its conductivity and reliability',
+  'fact.22':'<span class="dot"></span>It is also used in <strong>medicine</strong> and dentistry',
+  'fact.23':'<span class="dot"></span>About <strong>10%</strong> of global gold demand comes from industrial uses',
+  'fact.24':'<span class="dot"></span>Gold has been used as <strong>money</strong> and currency backing for centuries',
+  'fact.25':'<span class="dot"></span>Many investors buy gold to <strong>diversify</strong> their portfolios',
+  'fact.26':'<span class="dot"></span>Physical gold carries <strong>no counterparty risk</strong> unlike stocks or bonds',
+  'fact.27':'<span class="dot"></span>Gold mining occurs on every continent except <strong>Antarctica</strong>',
+  'fact.28':'<span class="dot"></span>The largest gold producers include <strong>China, Australia, and Russia</strong>',
+  'fact.29':'<span class="dot"></span>Dubai is one of the world\'s leading hubs for <strong>physical gold trading</strong>',
+  'fact.30':'<span class="dot"></span>Gold is universally recognized as a symbol of <strong>wealth, power, and security</strong>'
 },
 ar:{
   'nav.about':'من نحن','nav.products':'المنتجات','nav.services':'الخدمات','nav.values':'القيم','nav.whyus':'لماذا نحن','nav.contact':'اتصل بنا',
@@ -1380,14 +1448,36 @@ ar:{
   'footer.navH':'التنقل','footer.aboutUs':'من نحن','footer.ourValues':'قيمنا','footer.custom':'طلبات مخصصة','footer.location':'سوق الذهب، دبي',
   'footer.copy':'© 2024 بادجت جولد ذ.م.م. جميع الحقوق محفوظة.',
   'calc.label':'حاسبة الأسعار','calc.title':'احسب ','calc.titleEm':'استثمارك','calc.metal':'المعدن','calc.weight':'الوزن','calc.quantity':'الكمية','calc.estimated':'السعر التقديري',
-  'fact.1':'<span class="dot"></span>الذهب مخزن للقيمة منذ أكثر من <strong>5,000 عام</strong>',
-  'fact.2':'<span class="dot"></span>يتداول سوق الذهب في دبي أكثر من <strong>10 أطنان</strong> من الذهب يومياً',
-  'fact.3':'<span class="dot"></span>اشترت البنوك المركزية رقماً قياسياً بلغ <strong>1,037 طن</strong> من الذهب في 2023',
-  'fact.4':'<span class="dot"></span>الذهب أكثف من الماء بـ <strong>19.3 مرة</strong> — سبيكة 1 كغ تناسب كف يدك',
-  'fact.5':'<span class="dot"></span>الإمارات هي <strong>ثالث أكبر</strong> مركز لتجارة الذهب في العالم',
-  'fact.6':'<span class="dot"></span>كل الذهب المستخرج سيملأ فقط <strong>3.5 حمامات أولمبية</strong>',
-  'fact.7':'<span class="dot"></span>الذهب <strong>غير قابل للتلف</strong> — لا يصدأ ولا يتآكل ولا يفقد بريقه',
-  'fact.8':'<span class="dot"></span>الهند والصين معاً تستهلكان أكثر من <strong>50%</strong> من ذهب العالم'
+  'fact.1':'<span class="dot"></span>يُقدَّر الذهب من قبل البشر منذ أكثر من <strong>5,000 عام</strong>',
+  'fact.2':'<span class="dot"></span>هو أحد <strong>أندر</strong> العناصر الطبيعية على وجه الأرض',
+  'fact.3':'<span class="dot"></span>كل الذهب المستخرج يمكن أن يملأ مكعباً بطول <strong>22 متراً</strong> لكل ضلع',
+  'fact.4':'<span class="dot"></span>الذهب <strong>غير قابل للتلف</strong> — لا يصدأ ولا يتآكل ولا يفقد بريقه',
+  'fact.5':'<span class="dot"></span>حوالي <strong>50%</strong> من الطلب العالمي على الذهب يأتي من المجوهرات',
+  'fact.6':'<span class="dot"></span>حوالي <strong>25%</strong> يُستخدم للاستثمار — سبائك وعملات وصناديق',
+  'fact.7':'<span class="dot"></span>تحتفظ البنوك المركزية بأكثر من <strong>35,000 طن</strong> من احتياطيات الذهب عالمياً',
+  'fact.8':'<span class="dot"></span>يُعتبر الذهب أصل <strong>ملاذ آمن</strong> في أوقات عدم اليقين الاقتصادي',
+  'fact.9':'<span class="dot"></span>يحافظ على قيمته أثناء <strong>التضخم</strong> وانخفاض قيمة العملات',
+  'fact.10':'<span class="dot"></span>يُسعَّر الذهب عالمياً بالدولار الأمريكي — <strong>XAU/USD</strong>',
+  'fact.11':'<span class="dot"></span>الذهب الخالص يُقاس بـ <strong>24 قيراط</strong> (999.9 نقاء)',
+  'fact.12':'<span class="dot"></span>سبائك الذهب تُسمى أيضاً <strong>بوليون</strong>',
+  'fact.13':'<span class="dot"></span>أكثر أحجام السبائك الاستثمارية شيوعاً من <strong>1 غ إلى 1 كغ</strong>',
+  'fact.14':'<span class="dot"></span>السبائك المؤسسية الكبيرة تزن حوالي <strong>400 أونصة تروي</strong> (~12.4 كغ)',
+  'fact.15':'<span class="dot"></span>كل سبيكة عادةً تحمل <strong>رقماً تسلسلياً</strong> فريداً للتتبع',
+  'fact.16':'<span class="dot"></span>السبائك عالية الجودة تأتي من مصافي <strong>معتمدة من LBMA</strong>',
+  'fact.17':'<span class="dot"></span>الذهب كثيف للغاية — أثقل من الرصاص <strong>بمرتين</strong> تقريباً',
+  'fact.18':'<span class="dot"></span>هو أكثر المعادن <strong>طواعية</strong> — 1 غ يمكن مدّه إلى سلك بطول 2 كم',
+  'fact.19':'<span class="dot"></span>الذهب أيضاً عالي <strong>المرونة</strong> وسهل التشكيل',
+  'fact.20':'<span class="dot"></span>يعكس <strong>الأشعة تحت الحمراء</strong> مما يجعله مفيداً في تكنولوجيا الفضاء',
+  'fact.21':'<span class="dot"></span>يُستخدم الذهب في <strong>الإلكترونيات</strong> بفضل موصليته وموثوقيته',
+  'fact.22':'<span class="dot"></span>يُستخدم أيضاً في <strong>الطب</strong> وطب الأسنان',
+  'fact.23':'<span class="dot"></span>حوالي <strong>10%</strong> من الطلب العالمي على الذهب يأتي من الاستخدامات الصناعية',
+  'fact.24':'<span class="dot"></span>استُخدم الذهب كـ <strong>نقود</strong> وغطاء للعملات لقرون',
+  'fact.25':'<span class="dot"></span>يشتري كثير من المستثمرين الذهب <strong>لتنويع</strong> محافظهم',
+  'fact.26':'<span class="dot"></span>الذهب المادي لا يحمل <strong>مخاطر الطرف المقابل</strong> على عكس الأسهم والسندات',
+  'fact.27':'<span class="dot"></span>يتم تعدين الذهب في كل القارات عدا <strong>أنتاركتيكا</strong>',
+  'fact.28':'<span class="dot"></span>أكبر منتجي الذهب تشمل <strong>الصين وأستراليا وروسيا</strong>',
+  'fact.29':'<span class="dot"></span>دبي من أبرز المراكز العالمية لـ <strong>تجارة الذهب المادي</strong>',
+  'fact.30':'<span class="dot"></span>الذهب معترف به عالمياً كرمز <strong>للثروة والقوة والأمان</strong>'
 },
 ru:{
   'nav.about':'О нас','nav.products':'Продукция','nav.services':'Услуги','nav.values':'Ценности','nav.whyus':'Почему мы','nav.contact':'Контакты',
@@ -1440,14 +1530,36 @@ ru:{
   'footer.navH':'Навигация','footer.aboutUs':'О нас','footer.ourValues':'Наши ценности','footer.custom':'На заказ','footer.location':'Золотой рынок, Дубай',
   'footer.copy':'© 2024 Budget Gold L.L.C. Все права защищены.',
   'calc.label':'Калькулятор цен','calc.title':'Рассчитайте ','calc.titleEm':'Вашу инвестицию','calc.metal':'Металл','calc.weight':'Вес','calc.quantity':'Количество','calc.estimated':'Расчётная стоимость',
-  'fact.1':'<span class="dot"></span>Золото является средством сбережения уже более <strong>5 000 лет</strong>',
-  'fact.2':'<span class="dot"></span>На Золотом рынке Дубая ежедневно торгуется более <strong>10 тонн</strong> золота',
-  'fact.3':'<span class="dot"></span>Центральные банки купили рекордные <strong>1 037 тонн</strong> золота в 2023 году',
-  'fact.4':'<span class="dot"></span>Золото в <strong>19,3 раза</strong> плотнее воды — слиток 1 кг помещается на ладони',
-  'fact.5':'<span class="dot"></span>ОАЭ — <strong>3-й крупнейший</strong> центр торговли золотом в мире',
-  'fact.6':'<span class="dot"></span>Всё когда-либо добытое золото заполнило бы лишь <strong>3,5 олимпийских бассейна</strong>',
-  'fact.7':'<span class="dot"></span>Золото практически <strong>неразрушимо</strong> — оно не ржавеет, не тускнеет и не подвергается коррозии',
-  'fact.8':'<span class="dot"></span>Индия и Китай вместе потребляют более <strong>50%</strong> мирового золота'
+  'fact.1':'<span class="dot"></span>Золото ценится людьми уже более <strong>5 000 лет</strong>',
+  'fact.2':'<span class="dot"></span>Это один из <strong>редчайших</strong> природных элементов на Земле',
+  'fact.3':'<span class="dot"></span>Всё добытое золото поместилось бы в куб со стороной около <strong>22 метров</strong>',
+  'fact.4':'<span class="dot"></span>Золото <strong>неразрушимо</strong> — оно не ржавеет, не тускнеет и не подвергается коррозии',
+  'fact.5':'<span class="dot"></span>Около <strong>50%</strong> мирового спроса на золото приходится на ювелирные изделия',
+  'fact.6':'<span class="dot"></span>Около <strong>25%</strong> используется для инвестиций — слитки, монеты, ETF',
+  'fact.7':'<span class="dot"></span>Центральные банки хранят более <strong>35 000 тонн</strong> золотых резервов по всему миру',
+  'fact.8':'<span class="dot"></span>Золото считается активом-<strong>убежищем</strong> в периоды экономической нестабильности',
+  'fact.9':'<span class="dot"></span>Оно сохраняет стоимость в периоды <strong>инфляции</strong> и обесценивания валют',
+  'fact.10':'<span class="dot"></span>Золото котируется в долларах США по всему миру — <strong>XAU/USD</strong>',
+  'fact.11':'<span class="dot"></span>Чистое золото измеряется как <strong>24 карата</strong> (999,9 пробы)',
+  'fact.12':'<span class="dot"></span>Золотые слитки также называют <strong>буллионом</strong>',
+  'fact.13':'<span class="dot"></span>Наиболее популярные инвестиционные слитки — от <strong>1 г до 1 кг</strong>',
+  'fact.14':'<span class="dot"></span>Крупные институциональные слитки весят около <strong>400 тройских унций</strong> (~12,4 кг)',
+  'fact.15':'<span class="dot"></span>Каждый слиток обычно имеет уникальный <strong>серийный номер</strong> для отслеживания',
+  'fact.16':'<span class="dot"></span>Качественные слитки производятся на аффинажных заводах, <strong>аккредитованных LBMA</strong>',
+  'fact.17':'<span class="dot"></span>Золото чрезвычайно плотное — почти <strong>вдвое тяжелее</strong> свинца',
+  'fact.18':'<span class="dot"></span>Это самый <strong>ковкий</strong> металл — из 1 г можно вытянуть проволоку длиной 2 км',
+  'fact.19':'<span class="dot"></span>Золото также отличается высокой <strong>пластичностью</strong> и легко поддаётся обработке',
+  'fact.20':'<span class="dot"></span>Оно отражает <strong>инфракрасное излучение</strong>, что делает его полезным в космических технологиях',
+  'fact.21':'<span class="dot"></span>Золото применяется в <strong>электронике</strong> благодаря проводимости и надёжности',
+  'fact.22':'<span class="dot"></span>Оно также используется в <strong>медицине</strong> и стоматологии',
+  'fact.23':'<span class="dot"></span>Около <strong>10%</strong> мирового спроса на золото приходится на промышленное использование',
+  'fact.24':'<span class="dot"></span>Золото использовалось как <strong>деньги</strong> и обеспечение валют на протяжении веков',
+  'fact.25':'<span class="dot"></span>Многие инвесторы покупают золото для <strong>диверсификации</strong> портфелей',
+  'fact.26':'<span class="dot"></span>Физическое золото не несёт <strong>контрагентского риска</strong> в отличие от акций и облигаций',
+  'fact.27':'<span class="dot"></span>Золото добывается на всех континентах, кроме <strong>Антарктиды</strong>',
+  'fact.28':'<span class="dot"></span>Крупнейшие производители золота — <strong>Китай, Австралия и Россия</strong>',
+  'fact.29':'<span class="dot"></span>Дубай — один из ведущих мировых центров <strong>торговли физическим золотом</strong>',
+  'fact.30':'<span class="dot"></span>Золото повсеместно признано символом <strong>богатства, силы и безопасности</strong>'
 }
 };
 
