@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Budget Gold L.L.C. — Premium Precious Metals Trading, Dubai</title>
 <meta name="description" content="Budget Gold L.L.C. — Your trusted partner for gold and silver trading in Dubai. Premium gold bars, silver bars, and minted coins at competitive spot market prices.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Crect x='1' y='1' width='30' height='30' rx='5' fill='none' stroke='%23D4AF37' stroke-width='1.5'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23D4AF37'%3EBG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Outfit:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
@@ -352,6 +353,26 @@ img{max-width:100%;display:block}
 .product-back .btn-primary{width:100%;justify-content:center;padding:.85rem;font-size:.75rem;margin-top:1.5rem}
 @media(max-width:900px){.products-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto}.product-card{height:480px}}
 
+/* ══════ CALCULATOR ══════ */
+.calculator{position:relative;z-index:1;padding:6rem 0;background:linear-gradient(180deg,var(--black-900),var(--black-800))}
+.calc-card{max-width:640px;margin:0 auto;background:rgba(20,20,20,.8);border:1px solid rgba(212,175,55,.1);border-radius:12px;padding:2.5rem 3rem;backdrop-filter:blur(20px)}
+.calc-row{display:flex;gap:1rem;margin-bottom:1.2rem}
+.calc-group{flex:1;display:flex;flex-direction:column;gap:.4rem}
+.calc-group label{font-size:.72rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gray-500)}
+.calc-group select,.calc-group input{background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.12);border-radius:6px;padding:.7rem 1rem;color:var(--gray-100);font-family:var(--font-body);font-size:.95rem;outline:none;transition:border-color .3s}
+.calc-group select:focus,.calc-group input:focus{border-color:rgba(212,175,55,.4)}
+.calc-group select{cursor:pointer;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%23D4AF37' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center}
+.calc-group select option{background:#1a1a1a;color:#f5f5f5}
+.calc-result{margin-top:1.5rem;padding:1.5rem;background:rgba(212,175,55,.04);border:1px solid rgba(212,175,55,.12);border-radius:8px;text-align:center}
+.calc-result-label{font-size:.72rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-500);margin-bottom:.5rem}
+.calc-result-value{font-family:var(--font-heading);font-size:2.4rem;font-weight:400;background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.calc-result-sub{font-size:.78rem;color:var(--gray-500);margin-top:.4rem}
+.calc-result-row{display:flex;justify-content:center;gap:2.5rem;margin-top:.8rem}
+.calc-result-item{text-align:center}
+.calc-result-item span{display:block;font-family:var(--font-heading);font-size:1.3rem;color:var(--gray-200)}
+.calc-result-item small{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-500)}
+@media(max-width:600px){.calc-card{padding:1.5rem 1.2rem}.calc-row{flex-direction:column}.calc-result-value{font-size:1.8rem}}
+
 /* ══════ SERVICES ══════ */
 .services{position:relative;z-index:1;padding:8rem 0;background:linear-gradient(180deg,var(--black-800),var(--black-900))}
 .services-header{text-align:center;max-width:600px;margin:0 auto 4rem}
@@ -537,18 +558,26 @@ img{max-width:100%;display:block}
 .back-to-top svg{width:18px;height:18px;stroke:var(--gold-400);fill:none;stroke-width:2}
 
 /* ══════ PAGE LOAD ══════ */
-.page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--black-900);z-index:99999;display:flex;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s}
+.page-loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--black-900);z-index:99999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1.5rem;transition:opacity .6s,visibility .6s}
 .page-loader.hidden{opacity:0;visibility:hidden}
-.loader-bar{width:120px;height:2px;background:rgba(212,175,55,.1);overflow:hidden;border-radius:2px}
-.loader-bar-fill{width:0;height:100%;background:var(--gold-gradient);animation:loaderFill 1.5s var(--ease-out-expo) forwards}
-@keyframes loaderFill{to{width:100%}}
+.loader-logo{position:relative;width:80px;height:80px}
+.loader-ring{position:absolute;inset:0;border-radius:50%;border:2px solid rgba(212,175,55,.1);border-top-color:var(--gold-400);animation:loaderSpin 1s linear infinite}
+.loader-ring::after{content:'';position:absolute;top:-2px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--gold-400);box-shadow:0 0 10px rgba(212,175,55,.6)}
+@keyframes loaderSpin{to{transform:rotate(360deg)}}
+.loader-text{font-family:var(--font-heading);font-size:1.8rem;font-weight:600;background:var(--gold-gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);animation:loaderPulse 1.5s ease-in-out infinite}
+@keyframes loaderPulse{0%,100%{opacity:.6}50%{opacity:1}}
+.loader-label{font-family:var(--font-body);font-size:.7rem;font-weight:400;letter-spacing:.3em;text-transform:uppercase;color:rgba(212,175,55,.4)}
 </style>
 </head>
 <body>
 
 <!-- Page loader -->
 <div class="page-loader" id="pageLoader">
-  <div class="loader-bar"><div class="loader-bar-fill"></div></div>
+  <div class="loader-logo">
+    <div class="loader-ring"></div>
+    <span class="loader-text">BG</span>
+  </div>
+  <span class="loader-label">Budget Gold</span>
 </div>
 
 <!-- Noise overlay -->
@@ -785,6 +814,52 @@ img{max-width:100%;display:block}
             <a href="#contact" class="btn-primary" data-i18n="products.inquire">Inquire Now</a>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CALCULATOR ═══════════ -->
+<section class="calculator" id="calculator">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:3rem">
+      <div class="section-label reveal" style="justify-content:center" data-i18n="calc.label">Price Calculator</div>
+      <h2 class="section-title reveal reveal-delay-1" data-i18n="calc.title">Calculate <em data-i18n="calc.titleEm">Your Investment</em></h2>
+    </div>
+    <div class="calc-card reveal reveal-delay-2">
+      <div class="calc-row">
+        <div class="calc-group">
+          <label data-i18n="calc.metal">Metal</label>
+          <select id="calcMetal">
+            <option value="gold" data-i18n="products.gold">Gold</option>
+            <option value="silver" data-i18n="products.silver">Silver</option>
+          </select>
+        </div>
+        <div class="calc-group">
+          <label data-i18n="calc.weight">Weight</label>
+          <select id="calcWeight">
+            <option value="1">1 g</option>
+            <option value="5">5 g</option>
+            <option value="10" selected>10 g</option>
+            <option value="50">50 g</option>
+            <option value="100">100 g</option>
+            <option value="500">500 g</option>
+            <option value="1000">1 kg</option>
+          </select>
+        </div>
+        <div class="calc-group">
+          <label data-i18n="calc.quantity">Quantity</label>
+          <input type="number" id="calcQty" value="1" min="1" max="999">
+        </div>
+      </div>
+      <div class="calc-result">
+        <div class="calc-result-label" data-i18n="calc.estimated">Estimated Price</div>
+        <div class="calc-result-value" id="calcTotal">—</div>
+        <div class="calc-result-row">
+          <div class="calc-result-item"><span id="calcUSD">—</span><small>USD</small></div>
+          <div class="calc-result-item"><span id="calcAED">—</span><small>AED</small></div>
+        </div>
+        <div class="calc-result-sub" id="calcSpot"></div>
       </div>
     </div>
   </div>
@@ -1037,6 +1112,8 @@ document.querySelector('.hero-radial').style.transform=`translate(calc(-50% + ${
   const AED_RATE = 3.6725; // USD to AED fixed peg
   const TROY_OZ_TO_GRAM = 31.1035;
   let prevGold = null, prevSilver = null;
+  // Expose prices for calculator
+  window._metalPrices = {gold: 0, silver: 0, aedRate: AED_RATE, ozToGram: TROY_OZ_TO_GRAM};
 
   function fmt(n, decimals){
     return n.toLocaleString('en-US',{minimumFractionDigits:decimals,maximumFractionDigits:decimals});
@@ -1078,10 +1155,11 @@ document.querySelector('.hero-radial').style.transform=`translate(calc(-50% + ${
       const p = gold.price;
       setPrice('goldPrice', '$' + fmt(p, 2), '');
       setChange('goldChange', p, prevGold);
-      // Gold AED per gram
       const aedPerGram = (p * AED_RATE) / TROY_OZ_TO_GRAM;
       setPrice('goldAed', 'AED ' + fmt(aedPerGram, 2), '');
       prevGold = p;
+      window._metalPrices.gold = p;
+      if(window._updateCalc) window._updateCalc();
     }
 
     if(silver && silver.price){
@@ -1089,6 +1167,8 @@ document.querySelector('.hero-radial').style.transform=`translate(calc(-50% + ${
       setPrice('silverPrice', '$' + fmt(p, 2), '');
       setChange('silverChange', p, prevSilver);
       prevSilver = p;
+      window._metalPrices.silver = p;
+      if(window._updateCalc) window._updateCalc();
     }
 
     // Update timestamp
@@ -1233,7 +1313,8 @@ en:{
   'contact.message':'Message','contact.send':'Send Message',
   'footer.desc':"Your trusted partner for precious metals trading in the heart of Dubai's Gold Souk.",
   'footer.navH':'Navigation','footer.aboutUs':'About Us','footer.ourValues':'Our Values','footer.custom':'Custom Orders','footer.location':'Gold Souk, Dubai',
-  'footer.copy':'© 2024 Budget Gold L.L.C. All Rights Reserved.'
+  'footer.copy':'© 2024 Budget Gold L.L.C. All Rights Reserved.',
+  'calc.label':'Price Calculator','calc.title':'Calculate ','calc.titleEm':'Your Investment','calc.metal':'Metal','calc.weight':'Weight','calc.quantity':'Quantity','calc.estimated':'Estimated Price'
 },
 ar:{
   'nav.about':'من نحن','nav.products':'المنتجات','nav.services':'الخدمات','nav.values':'القيم','nav.whyus':'لماذا نحن','nav.contact':'اتصل بنا',
@@ -1284,7 +1365,8 @@ ar:{
   'contact.message':'الرسالة','contact.send':'إرسال الرسالة',
   'footer.desc':'شريكك الموثوق لتجارة المعادن الثمينة في قلب سوق الذهب في دبي.',
   'footer.navH':'التنقل','footer.aboutUs':'من نحن','footer.ourValues':'قيمنا','footer.custom':'طلبات مخصصة','footer.location':'سوق الذهب، دبي',
-  'footer.copy':'© 2024 بادجت جولد ذ.م.م. جميع الحقوق محفوظة.'
+  'footer.copy':'© 2024 بادجت جولد ذ.م.م. جميع الحقوق محفوظة.',
+  'calc.label':'حاسبة الأسعار','calc.title':'احسب ','calc.titleEm':'استثمارك','calc.metal':'المعدن','calc.weight':'الوزن','calc.quantity':'الكمية','calc.estimated':'السعر التقديري'
 },
 ru:{
   'nav.about':'О нас','nav.products':'Продукция','nav.services':'Услуги','nav.values':'Ценности','nav.whyus':'Почему мы','nav.contact':'Контакты',
@@ -1335,7 +1417,8 @@ ru:{
   'contact.message':'Сообщение','contact.send':'Отправить',
   'footer.desc':'Ваш надёжный партнёр по торговле драгоценными металлами в самом сердце Золотого рынка Дубая.',
   'footer.navH':'Навигация','footer.aboutUs':'О нас','footer.ourValues':'Наши ценности','footer.custom':'На заказ','footer.location':'Золотой рынок, Дубай',
-  'footer.copy':'© 2024 Budget Gold L.L.C. Все права защищены.'
+  'footer.copy':'© 2024 Budget Gold L.L.C. Все права защищены.',
+  'calc.label':'Калькулятор цен','calc.title':'Рассчитайте ','calc.titleEm':'Вашу инвестицию','calc.metal':'Металл','calc.weight':'Вес','calc.quantity':'Количество','calc.estimated':'Расчётная стоимость'
 }
 };
 
@@ -1408,6 +1491,45 @@ document.addEventListener('click', function(){ sw.classList.remove('open'); });
 
 // Apply saved language on load
 if(currentLang !== 'en') applyLang(currentLang);
+})();
+
+/* ═══════════════════════════════
+   PRICE CALCULATOR
+   ═══════════════════════════════ */
+(function(){
+  const metal = document.getElementById('calcMetal');
+  const weight = document.getElementById('calcWeight');
+  const qty = document.getElementById('calcQty');
+  const totalEl = document.getElementById('calcTotal');
+  const usdEl = document.getElementById('calcUSD');
+  const aedEl = document.getElementById('calcAED');
+  const spotEl = document.getElementById('calcSpot');
+  if(!metal) return;
+
+  function fmt(n){ return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+  function update(){
+    const p = window._metalPrices || {};
+    const ozPrice = metal.value === 'gold' ? p.gold : p.silver;
+    if(!ozPrice) { totalEl.textContent = '—'; usdEl.textContent = '—'; aedEl.textContent = '—'; spotEl.textContent = ''; return; }
+    const gramPrice = ozPrice / (p.ozToGram || 31.1035);
+    const w = parseFloat(weight.value) || 10;
+    const q = Math.max(1, parseInt(qty.value) || 1);
+    const totalUSD = gramPrice * w * q;
+    const totalAED = totalUSD * (p.aedRate || 3.6725);
+    totalEl.textContent = '$' + fmt(totalUSD);
+    usdEl.textContent = '$' + fmt(totalUSD);
+    aedEl.textContent = fmt(totalAED);
+    const sym = metal.value === 'gold' ? 'XAU' : 'XAG';
+    spotEl.textContent = sym + ' spot: $' + fmt(ozPrice) + '/oz · $' + fmt(gramPrice) + '/g';
+  }
+
+  metal.addEventListener('change', update);
+  weight.addEventListener('change', update);
+  qty.addEventListener('input', update);
+  window._updateCalc = update;
+  // Initial calc after prices load
+  setTimeout(update, 3000);
 })();
 </script>
 </body>
