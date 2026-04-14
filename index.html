@@ -162,15 +162,16 @@ img{max-width:100%;display:block}
 .orbit-ring-dot{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold-400);box-shadow:0 0 10px rgba(212,175,55,.6);top:-2.5px;left:50%}
 @keyframes orbitSpin{from{transform:rotateZ(0) rotateX(65deg)}to{transform:rotateZ(360deg) rotateX(65deg)}}
 
-/* Bar container — centered, all faces offset from center */
-.gold-bar-3d{width:360px;height:150px;position:relative;transform-style:preserve-3d;animation:rotateBar 14s ease-in-out infinite;z-index:2;touch-action:none}
+/* Bar container — centered, image-based */
+.gold-bar-3d{width:420px;position:relative;transform-style:preserve-3d;animation:rotateBar 14s ease-in-out infinite;z-index:2;touch-action:none}
 .gold-bar-3d.touch-active{animation:none}
+.hero-bar-img{width:100%;height:auto;display:block;filter:drop-shadow(0 20px 40px rgba(0,0,0,.5))}
 @keyframes rotateBar{
-  0%{transform:rotateX(-20deg) rotateY(-25deg)}
-  25%{transform:rotateX(-18deg) rotateY(10deg)}
-  50%{transform:rotateX(-22deg) rotateY(30deg)}
-  75%{transform:rotateX(-16deg) rotateY(5deg)}
-  100%{transform:rotateX(-20deg) rotateY(-25deg)}
+  0%{transform:perspective(900px) rotateX(-5deg) rotateY(-8deg)}
+  25%{transform:perspective(900px) rotateX(-3deg) rotateY(8deg)}
+  50%{transform:perspective(900px) rotateX(-6deg) rotateY(12deg)}
+  75%{transform:perspective(900px) rotateX(-2deg) rotateY(2deg)}
+  100%{transform:perspective(900px) rotateX(-5deg) rotateY(-8deg)}
 }
 
 .bar-face{position:absolute;top:50%;left:50%}
@@ -278,17 +279,7 @@ img{max-width:100%;display:block}
   .hero-text{max-width:100%}.hero-desc{max-width:100%;margin-left:auto;margin-right:auto}
   .hero-buttons{justify-content:center}.hero-visual{margin-top:-1rem}
   .gold-bar-scene{width:420px;height:420px}
-  /* Mobile bar: W=255 H=108 D=84 → halfW=127.5 halfH=54 halfD=42 (1.5× of old mobile) */
-  .gold-bar-3d{width:255px;height:108px}
-  .bar-front,.bar-back{width:255px;height:108px;margin-left:-127.5px;margin-top:-54px}
-  .bar-top,.bar-bottom{width:255px;height:84px;margin-left:-127.5px;margin-top:-42px}
-  .bar-left,.bar-right{width:84px;height:108px;margin-left:-42px;margin-top:-54px}
-  .bar-front{transform:translateZ(42px)}.bar-back{transform:rotateY(180deg) translateZ(42px)}
-  .bar-top{transform:rotateX(90deg) translateZ(54px)}
-  .bar-bottom{transform:rotateX(-90deg) translateZ(54px)}
-  .bar-left{transform:rotateY(-90deg) translateZ(127.5px)}
-  .bar-right{transform:rotateY(90deg) translateZ(127.5px)}
-  .bar-stamp{font-size:.9rem}.bar-weight{font-size:.65rem}.bar-purity{font-size:.55rem}
+  .gold-bar-3d{width:300px}
   .hero-ticker{gap:1.5rem;padding:.8rem 1.5rem;flex-wrap:wrap;justify-content:center}
 }
 @media(max-width:500px){.hero-ticker{display:none}}
@@ -650,31 +641,7 @@ img{max-width:100%;display:block}
         <div class="orbit-ring"></div>
         <div class="orbit-ring"></div>
         <div class="gold-bar-3d">
-          <div class="bar-face bar-front">
-            <div class="bar-front-content">
-              <div class="bar-front-left">
-                <span class="bar-stamp">Budget Gold</span>
-                <span class="bar-weight">999.9 Fine Gold</span>
-                <span class="bar-purity">1KG &ndash; 24 KARAT</span>
-                <span class="bar-serial">EG0012345</span>
-              </div>
-              <div class="bar-seal">
-                <svg viewBox="0 0 70 70" fill="none">
-                  <circle cx="35" cy="35" r="32" stroke="rgba(90,65,10,.4)" stroke-width="1.5"/>
-                  <circle cx="35" cy="35" r="28" stroke="rgba(90,65,10,.3)" stroke-width=".7"/>
-                  <circle cx="35" cy="35" r="24" stroke="rgba(90,65,10,.2)" stroke-width=".5" stroke-dasharray="2 2"/>
-                  <text x="35" y="31" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="14" font-weight="700" fill="rgba(80,58,8,.5)">BG</text>
-                  <text x="35" y="42" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="5.5" font-weight="500" fill="rgba(80,58,8,.4)" letter-spacing=".8">FINE GOLD</text>
-                  <text x="35" y="50" text-anchor="middle" font-family="'Outfit',sans-serif" font-size="4" fill="rgba(80,58,8,.3)" letter-spacing=".5">&#x2726; &#x2726; &#x2726; &#x2726; &#x2726;</text>
-                </svg>
-              </div>
-            </div>
-          </div>
-          <div class="bar-face bar-back"></div>
-          <div class="bar-face bar-top"></div>
-          <div class="bar-face bar-bottom"></div>
-          <div class="bar-face bar-left"></div>
-          <div class="bar-face bar-right"></div>
+          <img src="gold-bar.webp" alt="Budget Gold — 999.9 Fine Gold Bar" class="hero-bar-img">
         </div>
         <div class="bar-reflection"></div>
       </div>
