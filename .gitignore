@@ -1,2 +1,6 @@
 .vercel
 .env*.local
+# Original large PNGs (use optimized WebP instead)
+gold-bar.png
+silver-bar.png
+gold-coin.png
