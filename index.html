@@ -548,6 +548,19 @@ img{max-width:100%;display:block}
 .mission-card::after{content:'';position:absolute;bottom:0;right:0;width:40px;height:40px;border-right:1px solid rgba(212,175,55,.1);border-bottom:1px solid rgba(212,175,55,.1);opacity:0;transition:opacity .4s}
 .mission-card:hover::after{opacity:1}
 
+/* ══════ NEWS TICKER ══════ */
+.news-ticker{position:relative;z-index:1;overflow:hidden;background:rgba(10,10,10,.95);border-top:1px solid rgba(212,175,55,.08);border-bottom:1px solid rgba(212,175,55,.08);padding:.6rem 0;white-space:nowrap}
+.news-ticker-label{position:absolute;left:0;top:0;bottom:0;z-index:2;display:flex;align-items:center;padding:0 1rem;background:linear-gradient(90deg,rgba(10,10,10,1) 80%,transparent);font-family:var(--font-body);font-size:.65rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-400)}
+.news-ticker-label::after{content:'';display:inline-block;width:6px;height:6px;border-radius:50%;background:#ef5350;margin-left:.5rem;animation:pulse 2s ease-in-out infinite}
+.news-ticker-track{display:inline-flex;gap:3rem;animation:tickerScroll var(--ticker-duration, 60s) linear infinite;padding-left:120px}
+.news-ticker-track:hover{animation-play-state:paused}
+.news-ticker-item{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-body);font-size:.78rem;color:var(--gray-400);cursor:default}
+.news-ticker-item::before{content:'◆';color:var(--gold-400);font-size:.5rem}
+.news-ticker-item a{color:var(--gray-300);text-decoration:none;transition:color .3s}
+.news-ticker-item a:hover{color:var(--gold-300)}
+.news-ticker-item time{color:var(--gray-600);font-size:.65rem;margin-left:.3rem}
+@keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
 /* ══════ NOISE ══════ */
 .noise-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:9998;pointer-events:none;opacity:.018;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-repeat:repeat;background-size:256px 256px}
 
@@ -701,6 +714,29 @@ img{max-width:100%;display:block}
     <div class="marquee-item"><span class="dot"></span><strong>Testing &amp; Refining</strong> Certified</div>
     <div class="marquee-item"><span class="dot"></span><strong>Global Shipping</strong> Insured</div>
     <div class="marquee-item"><span class="dot"></span><strong>Expert Consultation</strong> Free</div>
+  </div>
+</div>
+
+<!-- ═══════════ NEWS TICKER ═══════════ -->
+<div class="news-ticker">
+  <div class="news-ticker-label" data-i18n="news.label">GOLD NEWS</div>
+  <div class="news-ticker-track" id="newsTicker">
+    <div class="news-ticker-item">Gold has been a store of value for over 5,000 years</div>
+    <div class="news-ticker-item">Dubai Gold Souk trades over 10 tonnes of gold daily</div>
+    <div class="news-ticker-item">Central banks bought record 1,037 tonnes of gold in 2023</div>
+    <div class="news-ticker-item">Gold is 19.3× denser than water — a 1kg bar fits in your palm</div>
+    <div class="news-ticker-item">The UAE is the world's 3rd largest gold trading hub</div>
+    <div class="news-ticker-item">All gold ever mined would fill just 3.5 Olympic pools</div>
+    <div class="news-ticker-item">Gold is virtually indestructible — it does not rust, tarnish, or corrode</div>
+    <div class="news-ticker-item">India and China together consume over 50% of the world's gold</div>
+    <div class="news-ticker-item">Gold has been a store of value for over 5,000 years</div>
+    <div class="news-ticker-item">Dubai Gold Souk trades over 10 tonnes of gold daily</div>
+    <div class="news-ticker-item">Central banks bought record 1,037 tonnes of gold in 2023</div>
+    <div class="news-ticker-item">Gold is 19.3× denser than water — a 1kg bar fits in your palm</div>
+    <div class="news-ticker-item">The UAE is the world's 3rd largest gold trading hub</div>
+    <div class="news-ticker-item">All gold ever mined would fill just 3.5 Olympic pools</div>
+    <div class="news-ticker-item">Gold is virtually indestructible — it does not rust, tarnish, or corrode</div>
+    <div class="news-ticker-item">India and China together consume over 50% of the world's gold</div>
   </div>
 </div>
 
